@@ -25,9 +25,9 @@ return {
         tsserver = {},
         cssls = {},
         ruby_lsp = {},
-        -- elixirls = {
-        --   cmd = { "/path/to/elixir-ls/language_server.sh" };
-        -- },
+        elixirls = {
+          cmd = { vim.fn.stdpath("data") .. "/mason/bin/elixir-ls" },
+        },
       }
 
       local servers_to_install = vim.tbl_filter(function(key)
