@@ -14,7 +14,7 @@ return {
     },
     config = function(_, opts)
       require("tokyodark").setup(opts)
-      vim.cmd.colorscheme "tokyodark"
-    end
-  }
+      vim.cmd.colorscheme("tokyodark")
+    end,
+  },
 }

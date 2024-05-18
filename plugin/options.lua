@@ -8,7 +8,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 -- Sync clipboard between OS and Neovim
 vim.opt.clipboard = "unnamedplus"
@@ -33,12 +33,10 @@ vim.opt.inccommand = "split"
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- misc
 vim.opt.backup = false
 vim.opt.swapfile = false
 
 vim.opt.wrap = false
-
-
