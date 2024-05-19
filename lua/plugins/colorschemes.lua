@@ -19,10 +19,10 @@ return {
   },
   "rktjmp/lush.nvim",
   "tjdevries/colorbuddy.nvim", -- for gruvbuddy
-  "Rigellute/rigel",
   "cocopon/iceberg.vim",
   "kyazdani42/blue-moon",
   "kristijanhusak/vim-hybrid-material",
+  "nanotech/jellybeans.vim",
   { "catppuccin/nvim", name = "catppuccin" },
   {
     "sainnhe/gruvbox-material",
@@ -44,6 +44,15 @@ return {
     end,
   },
   {
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require("kanagawa").setup({
+        commentStyle = { italic = false },
+        keywordStyle = { italic = false },
+      })
+    end,
+  },
+  {
     "folke/tokyonight.nvim",
     opts = {
       styles = {
@@ -54,15 +63,6 @@ return {
     },
     config = function(_, opts)
       require("tokyonight").setup(opts)
-    end,
-  },
-  {
-    "rebelot/kanagawa.nvim",
-    config = function()
-      require("kanagawa").setup({
-        commentStyle = { italic = false },
-        keywordStyle = { italic = false },
-      })
     end,
   },
 }
