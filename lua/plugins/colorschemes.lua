@@ -18,15 +18,29 @@ return {
     end,
   },
   "rktjmp/lush.nvim",
-  "xero/miasma.nvim",
-  "tjdevries/colorbuddy.nvim",
-  { "rose-pine/neovim", name = "rose-pine" },
+  "tjdevries/colorbuddy.nvim", -- for gruvbuddy
+  "Rigellute/rigel",
+  "cocopon/iceberg.vim",
+  "kyazdani42/blue-moon",
+  "kristijanhusak/vim-hybrid-material",
   { "catppuccin/nvim", name = "catppuccin" },
   {
     "sainnhe/gruvbox-material",
     config = function()
       vim.g.gruvbox_material_background = "hard"
       vim.g.gruvbox_material_foreground = "mix"
+    end,
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = {
+      styles = {
+        italic = false,
+      },
+    },
+    config = function(_, opts)
+      require("rose-pine").setup(opts)
     end,
   },
   {
