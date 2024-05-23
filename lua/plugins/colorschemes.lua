@@ -23,7 +23,16 @@ return {
   "kyazdani42/blue-moon",
   "kristijanhusak/vim-hybrid-material",
   "nanotech/jellybeans.vim",
-  { "catppuccin/nvim", name = "catppuccin" },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    opts = {
+      no_italic = true,
+    },
+    config = function(_, opts)
+      require('catppuccin').setup(opts)
+    end
+  },
   {
     "sainnhe/gruvbox-material",
     config = function()
