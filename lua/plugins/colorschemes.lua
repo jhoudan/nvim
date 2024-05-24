@@ -1,28 +1,21 @@
 return {
   {
-    "tiagovla/tokyodark.nvim",
+    "atelierbram/Base2Tone-nvim",
     lazy = false,
     priority = 1000,
-    opts = {
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-        identifiers = { italic = false },
-        functions = {},
-        variables = {},
-      },
-    },
-    config = function(_, opts)
-      require("tokyodark").setup(opts)
-      vim.cmd.colorscheme("tokyodark")
+    config = function()
+      vim.cmd.colorscheme("base2tone_space_dark")
+      -- vim.cmd.colorscheme("base2tone_suburb_dark")
+      -- vim.cmd.colorscheme("base2tone_morning_dark")
     end,
   },
   "rktjmp/lush.nvim",
   "tjdevries/colorbuddy.nvim", -- for gruvbuddy
   "cocopon/iceberg.vim",
   "kyazdani42/blue-moon",
-  "kristijanhusak/vim-hybrid-material",
+  'rakr/vim-two-firewatch',
   "nanotech/jellybeans.vim",
+  "ricardoraposo/gruvbox-minor.nvim",
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -32,13 +25,6 @@ return {
     config = function(_, opts)
       require('catppuccin').setup(opts)
     end
-  },
-  {
-    "sainnhe/gruvbox-material",
-    config = function()
-      vim.g.gruvbox_material_background = "hard"
-      vim.g.gruvbox_material_foreground = "mix"
-    end,
   },
   {
     "rose-pine/neovim",
@@ -72,6 +58,21 @@ return {
     },
     config = function(_, opts)
       require("tokyonight").setup(opts)
+    end,
+  },
+  {
+    "tiagovla/tokyodark.nvim",
+    opts = {
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+        identifiers = { italic = false },
+        functions = {},
+        variables = {},
+      },
+    },
+    config = function(_, opts)
+      require("tokyodark").setup(opts)
     end,
   },
 }
