@@ -17,6 +17,7 @@ return {
       notify_on_error = false,
       formatters_by_ft = {
         lua = { "stylua" },
+        elixir = { "mix" },
         javascript = { { "prettierd", "prettier" } },
         typescript = { { "prettierd", "prettier" } },
         typescriptreact = { { "prettierd", "prettier" } },
