@@ -1,21 +1,21 @@
 return {
   {
-    "atelierbram/Base2Tone-nvim",
+    "kyazdani42/blue-moon",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("base2tone_space_dark")
-      -- vim.cmd.colorscheme("base2tone_suburb_dark")
-      -- vim.cmd.colorscheme("base2tone_morning_dark")
+      vim.cmd.colorscheme("tokyodark")
+      vim.cmd.colorscheme("blue-moon")
     end,
   },
-  "rktjmp/lush.nvim",
-  "tjdevries/colorbuddy.nvim", -- for gruvbuddy
-  "cocopon/iceberg.vim",
-  "kyazdani42/blue-moon",
-  'rakr/vim-two-firewatch',
-  "nanotech/jellybeans.vim",
-  "ricardoraposo/gruvbox-minor.nvim",
+  "rktjmp/lush.nvim", -- pre-requisite for other themes
+  "fenetikm/falcon",
+  "embark-theme/vim",
+  -- 'rakr/vim-two-firewatch',
+  -- "metalelf0/jellybeans-nvim",
+  -- "atelierbram/Base2Tone-nvim",
+  -- "ricardoraposo/gruvbox-minor.nvim",
+  -- "tjdevries/colorbuddy.nvim", -- for gruvbuddy
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -75,4 +75,13 @@ return {
       require("tokyodark").setup(opts)
     end,
   },
+  --
+  --
+  --
+  {
+    'brenoprata10/nvim-highlight-colors',
+    config = function()
+      require('nvim-highlight-colors').setup({})
+    end,
+  }
 }
