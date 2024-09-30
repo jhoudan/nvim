@@ -22,7 +22,7 @@ return {
       local servers = {
         lua_ls = {},
         bashls = {},
-        tsserver = {},
+        ts_ls = {},
         cssls = {},
         ruby_lsp = {},
         elixirls = {

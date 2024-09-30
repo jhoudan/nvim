@@ -3,7 +3,7 @@ return {
     "kyazdani42/blue-moon",
     lazy = false,
     priority = 1000,
-    config = function()
+    init = function()
       vim.cmd.colorscheme("tokyodark")
       vim.cmd.colorscheme("blue-moon")
     end,
