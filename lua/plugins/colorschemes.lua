@@ -1,20 +1,20 @@
 return {
   {
-    "kyazdani42/blue-moon",
+    "bettervim/yugen.nvim",
     lazy = false,
     priority = 1000,
-    init = function()
-      vim.cmd.colorscheme("tokyodark")
-      vim.cmd.colorscheme("blue-moon")
+    config = function()
+      vim.cmd.colorscheme('yugen')
     end,
   },
   "rktjmp/lush.nvim", -- pre-requisite for other themes
-  "fenetikm/falcon",
+  "kyazdani42/blue-moon",
   "embark-theme/vim",
+  "bettervim/yugen.nvim",
+  "slugbyte/lackluster.nvim",
+  "olivercederborg/poimandres.nvim",
+  -- "fionn/grb256",
   -- 'rakr/vim-two-firewatch',
-  -- "metalelf0/jellybeans-nvim",
-  -- "atelierbram/Base2Tone-nvim",
-  -- "ricardoraposo/gruvbox-minor.nvim",
   -- "tjdevries/colorbuddy.nvim", -- for gruvbuddy
   {
     "catppuccin/nvim",
