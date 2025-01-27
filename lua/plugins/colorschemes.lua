@@ -1,21 +1,35 @@
 return {
   {
-    "bettervim/yugen.nvim",
+    dir = "~/.config/nvim/colorschemes/firewatch",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme('yugen')
-    end,
+      vim.cmd.colorscheme('firewatch')
+    end
   },
   "rktjmp/lush.nvim", -- pre-requisite for other themes
   "kyazdani42/blue-moon",
-  "embark-theme/vim",
   "bettervim/yugen.nvim",
-  "slugbyte/lackluster.nvim",
-  "olivercederborg/poimandres.nvim",
-  -- "fionn/grb256",
-  -- 'rakr/vim-two-firewatch',
+  'fionn/grb256',
+  -- 'dikiaap/minimalist',
+  -- 'Gavinok/SpaceWay.vim',
+  -- "slugbyte/lackluster.nvim",
   -- "tjdevries/colorbuddy.nvim", -- for gruvbuddy
+  {
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require("kanagawa").setup({
+        commentStyle = { italic = false },
+        keywordStyle = { italic = false },
+      })
+    end,
+  },
+  {
+    'AlessandroYorba/Sierra',
+    config = function()
+      vim.g.sierra_Pitch = 1
+    end
+  },
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -36,28 +50,6 @@ return {
     },
     config = function(_, opts)
       require("rose-pine").setup(opts)
-    end,
-  },
-  {
-    "rebelot/kanagawa.nvim",
-    config = function()
-      require("kanagawa").setup({
-        commentStyle = { italic = false },
-        keywordStyle = { italic = false },
-      })
-    end,
-  },
-  {
-    "folke/tokyonight.nvim",
-    opts = {
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-        identifiers = { italic = false },
-      },
-    },
-    config = function(_, opts)
-      require("tokyonight").setup(opts)
     end,
   },
   {
