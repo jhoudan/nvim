@@ -63,9 +63,9 @@ local c_syntax_color_removed = hsl("#e05252")
 local c_syntax_normal_bg = hsl("#0D1117")
 local c_syntax_color_fg = hsl("#abb2bf")
 local c_syntax_color_bg = hsl("#282c34")
-local c_syntax_color_accent = hsl("#56b6c2")
-local c_syntax_color_gutter = hsl("#636d83")
-local c_syntax_color_selection = hsl("#3e4452")
+-- local c_syntax_color_accent = hsl("#56b6c2")
+-- local c_syntax_color_gutter = hsl("#636d83")
+-- local c_syntax_color_selection = hsl("#3e4452")
 local c_syntax_color_fold_bg = hsl("#5c6370")
 local c_syntax_color_cursor_line = hsl("#2c323c")
 
@@ -186,8 +186,8 @@ local theme = lush(function(injected_functions)
     Constant       { fg = c_duo_2 }, -- (*) Any constant
     String         { fg = c_duo_1 }, --   A string constant: "this is a string"
     Character      { fg = c_duo_1 }, --   A character constant: 'c', '\n'
+    Boolean        { fg = c_syntax_color_modified, gui = "bold" }, --   A boolean constant: TRUE, false
     Number         { fg = c_duo_2 }, --   A number constant: 234, 0xff
-    Boolean        { fg = c_duo_3 }, --   A boolean constant: TRUE, false
     Float          { fg = c_duo_2 }, --   A floating point constant: 2.3e10
 
     Identifier     { fg = c_uno_2 }, -- (*) Any variable name
@@ -197,7 +197,7 @@ local theme = lush(function(injected_functions)
     Conditional    { fg = c_uno_3 }, --   if, then, else, endif, switch, etc.
     Repeat         { fg = c_uno_3 }, --   for, do, while, etc.
     Label          { fg = c_uno_2 }, --   case, default, etc.
-    Operator       { fg = c_uno_2 }, --   "sizeof", "+", "*", etc.
+    Operator       { fg = c_uno_3 }, --   "sizeof", "+", "*", etc.
     Keyword        { Normal }, --   any other keyword
     Exception      { }, --   try, catch, throw
 
@@ -215,7 +215,7 @@ local theme = lush(function(injected_functions)
     Special        { fg = c_uno_1 }, -- (*) Any special symbol
     SpecialChar    { fg = c_duo_2}, --   Special character in a constant
     -- Tag            { }, --   You can use CTRL-] on this
-    Delimiter      { fg = c_uno_2 }, --   Character that needs attention
+    Delimiter      { fg = c_uno_1 }, --   Character that needs attention
     -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
     -- Debug          { }, --   Debugging statements
 
@@ -282,70 +282,85 @@ local theme = lush(function(injected_functions)
     --
     -- For more information see https://github.com/rktjmp/lush.nvim/issues/109
 
-    sym"@variable"                { fg = c_uno_2 }, -- Identifier
-    sym"@variable.builtin"        { fg = c_duo_2 }, -- Identifier
-    sym"@variable.member"         { fg = c_uno_3 }, -- Identifier
+    sym"@variable"                    { fg = c_uno_2 }, -- various variable names
+    sym"@variable.builtin"            { fg = c_duo_2 }, -- built-in variable names (e.g. this, self)
+    sym"@variable.parameter"          { fg = c_uno_4 }, -- parameters of a function
+    sym"@variable.parameter.builtin"  { fg = c_uno_2 }, -- special parameters (e.g. _, it)
+    sym"@variable.member"             { fg = c_syntax_color_modified }, -- object and struct fields
 
-    sym"@constant"                { fg = c_uno_3 }, -- Constant
-    sym"@constant.builtin"        { fg = c_uno_3 }, -- Special
-    sym"@constant.macro"          { fg = c_duo_3 }, -- Define
+    sym"@constant"                    { fg = c_syntax_color_removed }, -- constant identifiers
+    sym"@constant.builtin"            { fg = c_uno_3 }, -- built-in variable names (e.ge. this, self, unit)
+    sym"@constant.macro"              { fg = c_duo_3 }, -- constants defined by the preprocessor
 
-    sym"@module"                  { fg = c_duo_2 }, -- Identifier
-    sym"@module.builtin"          { fg = c_duo_2 }, -- Identifier
-    sym"@label"                   { fg = c_uno_3 }, -- Label
+    sym"@module"                      { fg = c_duo_2 }, -- modules or namespaces
+    sym"@module.builtin"              { fg = c_duo_2 }, -- built-in modules or namespaces
+    sym"@label"                       { fg = c_uno_3 }, -- GOTO and other labels
 
-    sym"@string"                  { fg = c_duo_1 }, -- String
-    sym"@string.regexp"           { fg = c_syntax_color_removed}, -- SpecialChar
-    sym"@string.escape"           { fg = c_uno_1}, -- SpecialChar
-    sym"@string.special"          { fg = c_syntax_color_modified}, -- SpecialChar
+    sym"@string"                      { fg = c_duo_1 }, -- string literals
+    sym"@string.documentation"        { fg = c_duo_1, gui = "italic" }, -- string documenting code (.g. Python docstrings)
+    sym"@string.regexp"               { fg = c_syntax_color_removed}, -- regular expressions
+    sym"@string.escape"               { fg = c_duo_3 }, -- escape sequences
+    sym"@string.special"              { fg = c_duo_1, gui = "bold" }, -- other special strings (e.g. dates)
+    sym"@string.special.symbol"       { fg = c_syntax_color_modified }, -- symbols or atoms
+    sym"@string.special.path"         { fg = c_duo_1 }, -- filenames
+    sym"@string.special.url"          { fg = c_duo_1, gui = "underline" }, -- URIs
 
-    -- sym"@character"            { }, -- Character
-    -- sym"@character.special"    { }, -- SpecialChar
+    sym"@character"                   { fg = c_duo_1 }, -- character literals
+    sym"@character.special"           { fg = c_duo_3 }, -- special characters (e.g. wildcards)
 
-    sym"@boolean"                 { fg = c_syntax_color_modified }, -- Boolean
-    sym"@number"                  { fg = c_duo_2 }, -- Number
-    sym"@float"                   { fg = c_duo_2 }, -- Float
+    sym"@boolean"                     { Boolean }, -- boolean literals
+    sym"@number"                      { Number }, -- number literals
+    sym"@float"                       { Float }, -- floating-point number literals
 
-    sym"@type"                    { fg = c_syntax_accent }, -- Type
-    sym"@type.builtin"            { fg = c_syntax_accent }, -- Typedef
-    sym"@type.definition"         { fg = c_uno_1 }, -- Typedef
+    sym"@type"                        { fg = c_uno_3 }, -- type or class definitions and annotations
+    sym"@type.builtin"                { fg = c_uno_3 }, -- built-in types
+    sym"@type.definition"             { fg = c_uno_1 }, -- identifiers in type definitions (e.g. typedef <type> <identifier> in C)
 
-    sym"@attribute"               { fg = c_syntax_color_modified }, -- Type
-    -- sym"@attribute.builtin"    { fg = c_duo_2 }, -- Type
-    -- sym"@property"             { fg = c_uno_1 }, -- Identifier
+    sym"@attribute"                   { fg = c_syntax_color_modified }, -- attribute annotations (e.g. Python decorators, Rust lifetimes)
+    sym"@attribute.builtin"           { fg = c_duo_2 }, -- builtin annotations (e.ge @property in Python)
+    sym"@property"                    { fg = c_uno_2 }, -- the key in key/value pairs
 
-    sym"@function"                { Function }, -- Function
-    sym"@function.builtin"        { fg = c_duo_2 }, -- Special
-    sym"@function.call"           { Function }, -- Special
-    -- sym"@function.macro"       { fg = c_duo_2 }, -- Macro
-    -- sym"@function.method"      { Function }, -- Special
-    -- sym"@function.method.call" { Function }, -- Special
+    sym"@function"                    { fg = c_uno_3, gui = "bold" }, -- function definitions
+    sym"@function.builtin"            { fg = c_duo_2 }, -- built-in functions
+    sym"@function.call"               { fg = c_syntax_accent }, -- function calls
+    sym"@function.macro"              { fg = c_syntax_color_renamed }, -- preprocessor macros
 
-    sym"@constructor"             { fg = c_uno_3 }, -- Special
-    sym"@operator"                { fg = c_uno_3 }, -- Operator
+    sym"@function.method"             { fg = c_syntax_color_modified }, -- method definitions
+    sym"@function.method.call"        { fg = c_syntax_color_modified }, -- method calls
 
-    sym"@keyword"                 { Normal }, -- Keyword
-    sym"@keyword.coroutine"       { Normal }, -- Keyword
-    sym"@keyword.function"        { Normal }, -- Keyword
-    sym"@keyword.operator"        { Normal }, -- Keyword
-    sym"@keyword.import"          { Normal }, -- Keyword
-    sym"@keyword.return"          { fg = c_duo_2 }, -- Keyword
-    sym"@keyword.exception"       { fg = c_duo_2 }, -- Keyword
-    -- sym"@keyword.conditional"  { Normal }, -- Keyword
-    -- sym"@keyword.directive"    { Normal }, -- Keyword
+    sym"@constructor"                 { fg = c_uno_1, gui = "bold" }, -- constructor calls and definitions
+    sym"@operator"                    { Operator }, -- symbol operators (e.ge +, *)
 
-    sym"@punctuation"             { fg = c_uno_2 }, -- Delimiter
-    sym"@punctuation.bracket"     { fg = c_uno_2 }, -- Delimiter
-    sym"@punctuation.special"     { fg = c_uno_2 }, -- Delimiter
+    sym"@keyword"                     { Keyword }, -- keywords not fitting into specific categories
+    sym"@keyword.coroutine"           { Keyword }, -- keywords related to coroutines
+    sym"@keyword.function"            { Keyword }, -- keywords that define a function
+    sym"@keyword.operator"            { Keyword }, -- operators that are English words
+    sym"@keyword.import"              { Keyword }, -- keywords for including modules
+    sym"@keyword.type"                { Keyword }, -- keywords defining composite types
+    sym"@keyword.modifier"            { Keyword }, -- keywords defining type modifiers (e.g. const, static, public)
+    sym"@keyword.repeat"              { Keyword }, -- keywords related to loops
+    sym"@keyword.return"              { fg = c_duo_2 }, -- keywords like return and yield
+    sym"@keyword.debug"               { Keyword }, -- keywords related to debugging
+    sym"@keyword.exception"           { fg = c_duo_2 }, -- keywords related to exceptions
 
-    sym"@comment"                 { Comment }, -- Comment
-    sym"@comment.documentation"   { Comment }, -- Comment
+    sym"@keyword.conditional"         { Keyword }, -- keywords related to conditionals
+    sym"@keyword.conditional.ternary" { Keyword }, -- ternaary operators
 
-    sym"@diff.plus"               { fg = c_syntax_color_added }, -- Delimiter
-    sym"@diff.minus"              { fg = c_syntax_color_modified }, -- Delimiter
-    sym"@diff.delta"              { fg = c_syntax_color_renamed }, -- Delimiter
+    sym"@keyword.directive"           { Keyword }, -- ternary operators
+    sym"@keyword.directive.define"    { Keyword }, -- ternary operators
 
-    sym"@text.literal"            { fg = c_duo_1 }, -- Comment
+    sym"@punctuation"                 { fg = c_uno_2 }, -- delimiters (e.g. ;, ., ,)
+    sym"@punctuation.bracket"         { fg = c_uno_3 }, -- brackets and parentheses
+    sym"@punctuation.special"         { Delimiter }, -- special symbols
+
+    sym"@comment"                     { Comment }, -- Comment
+    sym"@comment.documentation"       { Comment }, -- Comment
+
+    sym"@diff.plus"                   { fg = c_syntax_color_added }, -- Delimiter
+    sym"@diff.minus"                  { fg = c_syntax_color_modified }, -- Delimiter
+    sym"@diff.delta"                  { fg = c_syntax_color_renamed }, -- Delimiter
+
+    sym"@text.literal"                { fg = c_duo_1 }, -- Comment
     -- sym"@text.reference"       { }, -- Identifier
     -- sym"@text.title"           { }, -- Title
     -- sym"@text.uri"             { }, -- Underlined
@@ -371,6 +386,7 @@ local theme = lush(function(injected_functions)
     sym"@tag"                     { fg = c_uno_1 }, -- Tag
     sym"@tag.builtin"             { fg = c_uno_1 }, -- Tag
     sym"@tag.attribute"           { fg = c_uno_3 }, -- Tag
+    sym"@tag.delimiter"           { fg = c_uno_1 }, -- Tag
 }
 end)
 
