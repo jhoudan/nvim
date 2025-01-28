@@ -48,7 +48,7 @@ local hsl = lush.hsl
 local c_uno_1 = hsl("#d6e9ff")
 local c_uno_2 = hsl("#abb2bf")
 local c_uno_3 = hsl("#6e88a6")
--- local c_uno_4 = hsl("#55606d")
+local c_uno_4 = hsl("#55606d")
 
 local c_duo_1 = hsl("#c8ae9d")
 local c_duo_2 = hsl("#e06c75")
@@ -63,11 +63,11 @@ local c_syntax_color_removed = hsl("#e05252")
 local c_syntax_normal_bg = hsl("#0D1117")
 local c_syntax_color_fg = hsl("#abb2bf")
 local c_syntax_color_bg = hsl("#282c34")
--- local c_syntax_color_accent = hsl("#56b6c2")
--- local c_syntax_color_gutter = hsl("#636d83")
--- local c_syntax_color_selection = hsl("#3e4452")
+local c_syntax_color_accent = hsl("#56b6c2")
+local c_syntax_color_gutter = hsl("#636d83")
+local c_syntax_color_selection = hsl("#3e4452")
 local c_syntax_color_fold_bg = hsl("#5c6370")
--- local c_syntax_color_cursor_line = hsl("#2c323c")
+local c_syntax_color_cursor_line = hsl("#2c323c")
 
 -- let g:terminal_color_0 = "#282c34"
 -- let g:terminal_color_8 = "#282c34"
@@ -103,31 +103,31 @@ local theme = lush(function(injected_functions)
     -- See :h highlight-groups
     --
     ColorColumn    {}, -- Columns set with 'colorcolumn'
-    -- Conceal        { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
+    -- Conceal        { bg = c_duo_3 }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor         { fg = c_syntax_color_fg, bg = c_syntax_color_bg }, -- Character under the cursor
     CurSearch      { fg = c_duo_2, bg = c_syntax_color_bg }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
     -- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
-    -- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    -- CursorLine     { }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorColumn   { bg = c_syntax_normal_bg }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+    CursorLine     { bg = c_syntax_normal_bg }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory      { fg = c_duo_3 }, -- Directory names (and other special names in listings)
     DiffAdd        { fg = c_syntax_color_added }, -- Diff mode: Added line |diff.txt|
     DiffChange     { fg = c_syntax_color_modified }, -- Diff mode: Changed line |diff.txt|
     DiffDelete     { fg = c_syntax_color_removed }, -- Diff mode: Deleted line |diff.txt|
     DiffText       { fg = c_syntax_color_renamed }, -- Diff mode: Changed text within a changed line |diff.txt|
-    -- EndOfBuffer    { }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+    EndOfBuffer    { fg = c_uno_4 }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     -- TermCursor     { }, -- Cursor in a focused terminal
     -- TermCursorNC   { }, -- Cursor in an unfocused terminal
     ErrorMsg       { fg = c_duo_2 }, -- Error messages on the command line
     -- VertSplit      { }, -- Column separating vertically split windows
-    -- Folded         { }, -- Line used for closed folds
-    -- FoldColumn     { }, -- 'foldcolumn'
-    -- SignColumn     { }, -- Column where |signs| are displayed
+    -- Folded         { bg = c_duo_2 }, -- Line used for closed folds
+    -- FoldColumn     { bg = c_duo_3 }, -- 'foldcolumn'
+    SignColumn     { bg = c_syntax_normal_bg }, -- Column where |signs| are displayed
     -- IncSearch      { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     -- Substitute     { }, -- |:substitute| replacement text highlighting
-    -- LineNr         { }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    -- LineNrAbove    { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
-    -- LineNrBelow    { }, -- Line number for when the 'relativenumber' option is set, below the cursor line
+    LineNr         { fg = c_uno_4 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    LineNrAbove    { fg = c_uno_4 }, -- Line number for when the 'relativenumber' option is set, above the cursor line
+    LineNrBelow    { fg = c_uno_4 }, -- Line number for when the 'relativenumber' option is set, below the cursor line
     -- CursorLineNr   { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     -- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
     -- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
@@ -142,7 +142,7 @@ local theme = lush(function(injected_functions)
     FloatBorder    { fg = c_uno_2, bg = c_syntax_color_bg }, -- Border of floating windows.
     -- FloatTitle     { }, -- Title of floating windows.
     -- NormalNC       { }, -- normal text in non-current windows
-    -- Pmenu          { }, -- Popup menu: Normal item.
+    Pmenu          { bg = c_syntax_color_cursor_line }, -- Popup menu: Normal item.
     -- PmenuSel       { }, -- Popup menu: Selected item.
     -- PmenuKind      { }, -- Popup menu: Normal item "kind"
     -- PmenuKindSel   { }, -- Popup menu: Selected item "kind"
@@ -152,7 +152,7 @@ local theme = lush(function(injected_functions)
     -- PmenuThumb     { }, -- Popup menu: Thumb of the scrollbar.
     -- Question       { }, -- |hit-enter| prompt and yes/no questions
     -- QuickFixLine   { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    -- Search         { }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+    Search         { fg = c_uno_3, bg = c_syntax_color_modified }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
     -- SpecialKey     { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
     -- SpellBad       { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     -- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
@@ -160,11 +160,11 @@ local theme = lush(function(injected_functions)
     -- SpellRare      { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
     StatusLine     { fg = c_uno_1, bg = c_syntax_normal_bg }, -- Status line of current window
     -- StatusLineNC   { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    -- TabLine        { }, -- Tab pages line, not active tab page label
-    -- TabLineFill    { }, -- Tab pages line, where there are no labels
+    -- TabLine        { bg = c_syntax_normal_bg }, -- Tab pages line, not active tab page label
+    -- TabLineFill    { bg = c_duo_2 }, -- Tab pages line, where there are no labels
     -- TabLineSel     { }, -- Tab pages line, active tab page label
     -- Title          { }, -- Titles for output from ":set all", ":autocmd" etc.
-    -- Visual         { }, -- Visual mode selection
+    Visual         { bg = c_syntax_color_cursor_line }, -- Visual mode selection
     -- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
     -- WarningMsg     { }, -- Warning messages
     -- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'

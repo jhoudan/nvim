@@ -4,6 +4,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
+      vim.cmd.colorscheme('kanagawa-dragon')
       vim.cmd.colorscheme('firewatch')
     end
   },
@@ -14,7 +15,7 @@ return {
   -- 'dikiaap/minimalist',
   -- 'Gavinok/SpaceWay.vim',
   -- "slugbyte/lackluster.nvim",
-  -- "tjdevries/colorbuddy.nvim", -- for gruvbuddy
+  "tjdevries/colorbuddy.nvim", -- for gruvbuddy
   {
     "rebelot/kanagawa.nvim",
     config = function()
