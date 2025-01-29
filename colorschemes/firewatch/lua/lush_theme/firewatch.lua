@@ -1,6 +1,4 @@
 --
--- Built with,
---
 --        ,gggg,
 --       d8" "8I                         ,dPYb,
 --       88  ,dP                         IP'`Yb
@@ -12,28 +10,6 @@
 -- Yb,_,d88b,,_   ,d8b,  ,d8b,,8'_   8) ,d8     I8,
 --  "Y8P"  "Y888888P'"Y88P"`Y8P' "YY8P8P88P     `Y8
 --
-
--- This is a starter colorscheme for use with Lush,
--- for usage guides, see :h lush or :LushRunTutorial
-
---
--- Note: Because this is a lua file, vim will append it to the runtime,
---       which means you can require(...) it in other lua code (this is useful),
---       but you should also take care not to conflict with other libraries.
---
---       (This is a lua quirk, as it has somewhat poor support for namespacing.)
---
---       Basically, name your file,
---
---       "super_theme/lua/lush_theme/super_theme_dark.lua",
---
---       not,
---
---       "super_theme/lua/dark.lua".
---
---       With that caveat out of the way...
---
-
 -- Enable lush.ify on this file, run:
 --
 --  `:Lushify`
@@ -54,37 +30,25 @@ local c_duo_1 = hsl("#c8ae9d")
 local c_duo_2 = hsl("#e06c75")
 local c_duo_3 = hsl("#dd672c")
 
-local c_syntax_accent = hsl("#90C1F8")
+local c_accent_1 = hsl("#90C1F8")
+
+local c_color_red = hsl("#e06c75")
+local c_color_green = hsl("#98c379")
+local c_color_yellow = hsl("#e5c07b")
+local c_color_blue = hsl("#61afef")
+local c_color_purple = hsl("#c678dd")
+local c_color_teal = hsl("#56b6c2")
+local c_color_cream = hsl("#dcdfe4")
+local c_color_grey_1 = hsl("#5c6370")
+local c_color_grey_2 = hsl("#3e4452")
+local c_color_grey_3 = hsl("#2c323c")
+local c_color_grey_4 = hsl("#282c34")
+local c_color_grey_5 = hsl("#0D1117")
+
 local c_syntax_color_renamed = hsl("#33a0ff")
 local c_syntax_color_added = hsl("#43d08a")
 local c_syntax_color_modified = hsl("#e0c285")
 local c_syntax_color_removed = hsl("#e05252")
-
-local c_syntax_normal_bg = hsl("#0D1117")
-local c_syntax_color_fg = hsl("#abb2bf")
-local c_syntax_color_bg = hsl("#282c34")
--- local c_syntax_color_accent = hsl("#56b6c2")
--- local c_syntax_color_gutter = hsl("#636d83")
--- local c_syntax_color_selection = hsl("#3e4452")
-local c_syntax_color_fold_bg = hsl("#5c6370")
-local c_syntax_color_cursor_line = hsl("#2c323c")
-
--- let g:terminal_color_0 = "#282c34"
--- let g:terminal_color_8 = "#282c34"
--- let g:terminal_color_1 = "#e06c75"
--- let g:terminal_color_9 = "#e06c75"
--- let g:terminal_color_2 = "#98c379"
--- let g:terminal_color_10 = "#98c379"
--- let g:terminal_color_3 = "#e5c07b"
--- let g:terminal_color_11 = "#e5c07b"
--- let g:terminal_color_4 = "#61afef"
--- let g:terminal_color_12 = "#61afef"
--- let g:terminal_color_5 = "#c678dd"
--- let g:terminal_color_13 = "#c678dd"
--- let g:terminal_color_6 = "#56b6c2"
--- let g:terminal_color_14 = "#56b6c2"
--- let g:terminal_color_7 = "#dcdfe4"
--- let g:terminal_color_15 = "#dcdfe4"
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
@@ -104,12 +68,12 @@ local theme = lush(function(injected_functions)
     --
     ColorColumn    {}, -- Columns set with 'colorcolumn'
     -- Conceal        { bg = c_duo_3 }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-    Cursor         { fg = c_syntax_color_fg, bg = c_syntax_color_bg }, -- Character under the cursor
-    CurSearch      { fg = c_duo_2, bg = c_syntax_color_bg }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
+    Cursor         { fg = c_color_grey_4 }, -- Character under the cursor
+    CurSearch      { fg = c_duo_2, bg = c_color_grey_4 }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
     -- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
-    CursorColumn   { bg = c_syntax_normal_bg }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    CursorLine     { bg = c_syntax_normal_bg }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorColumn   { bg = c_color_grey_5 }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
+    CursorLine     { bg = c_color_grey_5 }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory      { fg = c_duo_3 }, -- Directory names (and other special names in listings)
     DiffAdd        { fg = c_syntax_color_added }, -- Diff mode: Added line |diff.txt|
     DiffChange     { fg = c_syntax_color_modified }, -- Diff mode: Changed line |diff.txt|
@@ -122,7 +86,7 @@ local theme = lush(function(injected_functions)
     -- VertSplit      { }, -- Column separating vertically split windows
     -- Folded         { bg = c_duo_2 }, -- Line used for closed folds
     -- FoldColumn     { bg = c_duo_3 }, -- 'foldcolumn'
-    SignColumn     { bg = c_syntax_normal_bg }, -- Column where |signs| are displayed
+    SignColumn     { bg = c_color_grey_5 }, -- Column where |signs| are displayed
     -- IncSearch      { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     -- Substitute     { }, -- |:substitute| replacement text highlighting
     LineNr         { fg = c_uno_4 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
@@ -131,18 +95,18 @@ local theme = lush(function(injected_functions)
     -- CursorLineNr   { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     -- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
     -- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
-    -- MatchParen     { }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    MatchParen     { fg = c_duo_3 }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     -- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- MsgArea        { }, -- Area for messages and cmdline
     -- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg        { }, -- |more-prompt|
     -- NonText        { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal         { fg = c_uno_1, bg = c_syntax_normal_bg }, -- Normal text
-    NormalFloat    { fg = c_uno_2, bg = c_syntax_color_bg }, -- Normal text in floating windows.
-    FloatBorder    { fg = c_uno_2, bg = c_syntax_color_bg }, -- Border of floating windows.
+    Normal         { fg = c_uno_1, bg = c_color_grey_5 }, -- Normal text
+    NormalFloat    { fg = c_uno_2, bg = c_color_grey_4 }, -- Normal text in floating windows.
+    FloatBorder    { fg = c_uno_2, bg = c_color_grey_4 }, -- Border of floating windows.
     -- FloatTitle     { }, -- Title of floating windows.
     -- NormalNC       { }, -- normal text in non-current windows
-    Pmenu          { bg = c_syntax_color_cursor_line }, -- Popup menu: Normal item.
+    Pmenu          { bg = c_color_grey_3 }, -- Popup menu: Normal item.
     -- PmenuSel       { }, -- Popup menu: Selected item.
     -- PmenuKind      { }, -- Popup menu: Normal item "kind"
     -- PmenuKindSel   { }, -- Popup menu: Selected item "kind"
@@ -152,19 +116,19 @@ local theme = lush(function(injected_functions)
     -- PmenuThumb     { }, -- Popup menu: Thumb of the scrollbar.
     -- Question       { }, -- |hit-enter| prompt and yes/no questions
     -- QuickFixLine   { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search         { fg = c_uno_3, bg = c_syntax_color_modified }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+    Search         { fg = c_color_grey_4, bg = c_color_yellow }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
     -- SpecialKey     { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
     -- SpellBad       { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     -- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     -- SpellLocal     { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     -- SpellRare      { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-    StatusLine     { fg = c_uno_1, bg = c_syntax_normal_bg }, -- Status line of current window
+    StatusLine     { fg = c_uno_1, bg = c_color_grey_5 }, -- Status line of current window
     -- StatusLineNC   { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    -- TabLine        { bg = c_syntax_normal_bg }, -- Tab pages line, not active tab page label
+    -- TabLine        { bg = c_color_grey_5 }, -- Tab pages line, not active tab page label
     -- TabLineFill    { bg = c_duo_2 }, -- Tab pages line, where there are no labels
     -- TabLineSel     { }, -- Tab pages line, active tab page label
     -- Title          { }, -- Titles for output from ":set all", ":autocmd" etc.
-    Visual         { bg = c_syntax_color_cursor_line }, -- Visual mode selection
+    Visual         { bg = c_color_grey_3 }, -- Visual mode selection
     -- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
     -- WarningMsg     { }, -- Warning messages
     -- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -181,17 +145,17 @@ local theme = lush(function(injected_functions)
     --
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    Comment        { fg = c_syntax_color_fold_bg }, -- Any comment
+    Comment        { fg = c_color_grey_1 }, -- Any comment
 
     Constant       { fg = c_duo_2 }, -- (*) Any constant
     String         { fg = c_duo_1 }, --   A string constant: "this is a string"
     Character      { fg = c_duo_1 }, --   A character constant: 'c', '\n'
-    Boolean        { fg = c_syntax_color_modified, gui = "bold" }, --   A boolean constant: TRUE, false
+    Boolean        { fg = c_color_yellow, gui = "bold" }, --   A boolean constant: TRUE, false
     Number         { fg = c_duo_2 }, --   A number constant: 234, 0xff
     Float          { fg = c_duo_2 }, --   A floating point constant: 2.3e10
 
     Identifier     { fg = c_uno_2 }, -- (*) Any variable name
-    Function       { fg = c_syntax_accent }, --   Function name (also: methods for classes)
+    Function       { fg = c_accent_1 }, --   Function name (also: methods for classes)
 
     Statement      { fg = c_uno_1 }, -- (*) Any statement
     Conditional    { fg = c_uno_3 }, --   if, then, else, endif, switch, etc.
@@ -207,21 +171,21 @@ local theme = lush(function(injected_functions)
     -- Macro          { }, --   Same as Define
     -- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-    Type           { fg = c_syntax_accent }, -- (*) int, long, char, etc.
+    Type           { fg = c_accent_1 }, -- (*) int, long, char, etc.
     -- StorageClass   { }, --   static, register, volatile, etc.
     Structure      { fg = c_duo_2 }, --   struct, union, enum, etc.
     Typedef        { fg = c_duo_3 }, --   A typedef
 
     Special        { fg = c_uno_1 }, -- (*) Any special symbol
     SpecialChar    { fg = c_duo_2}, --   Special character in a constant
-    -- Tag            { }, --   You can use CTRL-] on this
+    Tag            { fg = c_uno_1 }, --   You can use CTRL-] on this
     Delimiter      { fg = c_uno_1 }, --   Character that needs attention
     -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
     -- Debug          { }, --   Debugging statements
 
     -- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
     -- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-    -- Error          { }, -- Any erroneous construct
+    Error          { }, -- Any erroneous construct
     -- Todo           { }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     -- These groups are for the native LSP client and diagnostic system. Some
@@ -284,9 +248,9 @@ local theme = lush(function(injected_functions)
 
     sym"@variable"                    { fg = c_uno_2 }, -- various variable names
     sym"@variable.builtin"            { fg = c_duo_2 }, -- built-in variable names (e.g. this, self)
-    sym"@variable.parameter"          { fg = c_uno_4 }, -- parameters of a function
+    sym"@variable.parameter"          { fg = c_color_cream }, -- parameters of a function
     sym"@variable.parameter.builtin"  { fg = c_uno_2 }, -- special parameters (e.g. _, it)
-    sym"@variable.member"             { fg = c_syntax_color_modified }, -- object and struct fields
+    sym"@variable.member"             { fg = c_color_yellow }, -- object and struct fields
 
     sym"@constant"                    { fg = c_syntax_color_removed }, -- constant identifiers
     sym"@constant.builtin"            { fg = c_uno_3 }, -- built-in variable names (e.ge. this, self, unit)
@@ -301,7 +265,7 @@ local theme = lush(function(injected_functions)
     sym"@string.regexp"               { fg = c_syntax_color_removed}, -- regular expressions
     sym"@string.escape"               { fg = c_duo_3 }, -- escape sequences
     sym"@string.special"              { fg = c_duo_1, gui = "bold" }, -- other special strings (e.g. dates)
-    sym"@string.special.symbol"       { fg = c_syntax_color_modified }, -- symbols or atoms
+    sym"@string.special.symbol"       { fg = c_color_yellow }, -- symbols or atoms
     sym"@string.special.path"         { fg = c_duo_1 }, -- filenames
     sym"@string.special.url"          { fg = c_duo_1, gui = "underline" }, -- URIs
 
@@ -309,27 +273,27 @@ local theme = lush(function(injected_functions)
     sym"@character.special"           { fg = c_duo_3 }, -- special characters (e.g. wildcards)
 
     sym"@boolean"                     { Boolean }, -- boolean literals
-    sym"@number"                      { Number }, -- number literals
-    sym"@float"                       { Float }, -- floating-point number literals
+    sym"@number"                      { fg = c_color_purple }, -- number literals
+    sym"@float"                       { fg = c_color_purple }, -- floating-point number literals
 
-    sym"@type"                        { fg = c_uno_3 }, -- type or class definitions and annotations
-    sym"@type.builtin"                { fg = c_uno_3 }, -- built-in types
+    sym"@type"                        { fg = c_color_blue, gui = "bold" }, -- type or class definitions and annotations
+    sym"@type.builtin"                { fg = c_color_blue, gui = "bold" }, -- built-in types
     sym"@type.definition"             { fg = c_uno_1 }, -- identifiers in type definitions (e.g. typedef <type> <identifier> in C)
 
-    sym"@attribute"                   { fg = c_syntax_color_modified }, -- attribute annotations (e.g. Python decorators, Rust lifetimes)
+    sym"@attribute"                   { fg = c_color_yellow }, -- attribute annotations (e.g. Python decorators, Rust lifetimes)
     sym"@attribute.builtin"           { fg = c_duo_2 }, -- builtin annotations (e.ge @property in Python)
     sym"@property"                    { fg = c_uno_2 }, -- the key in key/value pairs
 
     sym"@function"                    { fg = c_uno_3, gui = "bold" }, -- function definitions
     sym"@function.builtin"            { fg = c_duo_2 }, -- built-in functions
-    sym"@function.call"               { fg = c_syntax_accent }, -- function calls
-    sym"@function.macro"              { fg = c_syntax_color_renamed }, -- preprocessor macros
+    sym"@function.call"               { fg = c_accent_1 }, -- function calls
+    sym"@function.macro"              { fg = c_color_green, gui = "italic" }, -- preprocessor macros
 
-    sym"@function.method"             { fg = c_syntax_color_modified }, -- method definitions
-    sym"@function.method.call"        { fg = c_syntax_color_modified }, -- method calls
+    sym"@function.method"             { fg = c_color_yellow }, -- method definitions
+    sym"@function.method.call"        { fg = c_color_yellow }, -- method calls
 
-    sym"@constructor"                 { fg = c_uno_1, gui = "bold" }, -- constructor calls and definitions
-    sym"@operator"                    { Operator }, -- symbol operators (e.ge +, *)
+    sym"@constructor"                 { fg = c_color_green, gui = "bold" }, -- constructor calls and definitions
+    sym"@operator"                    { fg = c_color_cream }, -- symbol operators (e.ge +, *)
 
     sym"@keyword"                     { Keyword }, -- keywords not fitting into specific categories
     sym"@keyword.coroutine"           { Keyword }, -- keywords related to coroutines
@@ -339,19 +303,19 @@ local theme = lush(function(injected_functions)
     sym"@keyword.type"                { Keyword }, -- keywords defining composite types
     sym"@keyword.modifier"            { Keyword }, -- keywords defining type modifiers (e.g. const, static, public)
     sym"@keyword.repeat"              { Keyword }, -- keywords related to loops
-    sym"@keyword.return"              { fg = c_duo_2 }, -- keywords like return and yield
+    sym"@keyword.return"              { Keyword, gui = "bold" }, -- keywords like return and yield
     sym"@keyword.debug"               { Keyword }, -- keywords related to debugging
-    sym"@keyword.exception"           { fg = c_duo_2 }, -- keywords related to exceptions
+    sym"@keyword.exception"           { Keyword }, -- keywords related to exceptions
 
     sym"@keyword.conditional"         { Keyword }, -- keywords related to conditionals
     sym"@keyword.conditional.ternary" { Keyword }, -- ternaary operators
 
-    sym"@keyword.directive"           { Keyword }, -- ternary operators
-    sym"@keyword.directive.define"    { Keyword }, -- ternary operators
+    sym"@keyword.directive"           { Keyword }, --
+    sym"@keyword.directive.define"    { Keyword }, --
 
-    sym"@punctuation"                 { fg = c_uno_2 }, -- delimiters (e.g. ;, ., ,)
-    sym"@punctuation.bracket"         { fg = c_uno_3 }, -- brackets and parentheses
-    sym"@punctuation.special"         { Delimiter }, -- special symbols
+    sym"@punctuation"                 { fg = c_color_cream }, -- delimiters (e.g. ;, ., ,)
+    sym"@punctuation.bracket"         { fg = c_color_cream }, -- brackets and parentheses
+    sym"@punctuation.special"         { fg = c_color_cream }, -- special symbols
 
     sym"@comment"                     { Comment }, -- Comment
     sym"@comment.documentation"       { Comment }, -- Comment
@@ -362,7 +326,7 @@ local theme = lush(function(injected_functions)
 
     sym"@text.literal"                { fg = c_duo_1 }, -- Comment
     -- sym"@text.reference"       { }, -- Identifier
-    -- sym"@text.title"           { }, -- Title
+    sym"@text.title"                  { fg = c_color_blue, gui = "bold" }, -- Title
     -- sym"@text.uri"             { }, -- Underlined
     -- sym"@text.underline"       { }, -- Underlined
     -- sym"@text.todo"            { }, -- Todo
@@ -383,9 +347,9 @@ local theme = lush(function(injected_functions)
     -- sym"@preproc"              { }, -- PreProc
     -- sym"@debug"                { }, -- Debug
 
-    sym"@tag"                     { fg = c_uno_1 }, -- Tag
-    sym"@tag.builtin"             { fg = c_uno_1 }, -- Tag
-    sym"@tag.attribute"           { fg = c_uno_3 }, -- Tag
+    sym"@tag"                     { fg = c_color_blue }, -- Tag
+    sym"@tag.builtin"             { fg = c_color_blue }, -- Tag
+    sym"@tag.attribute"           { fg = c_color_cream }, -- Tag
     sym"@tag.delimiter"           { fg = c_uno_1 }, -- Tag
 }
 end)
