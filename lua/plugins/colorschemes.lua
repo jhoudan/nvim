@@ -5,8 +5,8 @@ return {
     priority = 1000,
     config = function()
       vim.cmd.colorscheme('kanagawa-dragon')
-      vim.cmd.colorscheme('jellybeans-nvim')
-      -- vim.cmd.colorscheme('firewatch')
+      vim.cmd.colorscheme('aske')
+      -- vim.cmd.colorscheme('jellybeans-nvim')
     end
   },
   "rktjmp/lush.nvim", -- pre-requisite for other themes
@@ -18,6 +18,9 @@ return {
   "tjdevries/colorbuddy.nvim", -- for gruvbuddy
   {
     dir = "~/.config/nvim/colorschemes/firewatch",
+  },
+  {
+    dir = "~/.config/nvim/colorschemes/aske",
   },
   {
     "rebelot/kanagawa.nvim",
