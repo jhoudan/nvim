@@ -22,8 +22,13 @@ return {
       local servers = {
         lua_ls = {},
         bashls = {},
-        ts_ls = {},
+        -- ts_ls = {},
         cssls = {},
+        hls = {
+          filetypes = { "haskell", "lhaskell", "cabal" },
+          -- cmd = { vim.fn.stdpath("data") .. "/mason/bin/haskell-language-server-9.4.2" },
+        },
+        ocamllsp = {},
         ruby_lsp = {},
         elixirls = {
           cmd = { vim.fn.stdpath("data") .. "/mason/bin/elixir-ls" },
