@@ -1,21 +1,24 @@
 return {
   {
-    dir = "~/.config/nvim/colorschemes/firewatch",
+    'metalelf0/jellybeans-nvim',
     lazy = false,
     priority = 1000,
     config = function()
       vim.cmd.colorscheme('kanagawa-dragon')
-      vim.cmd.colorscheme('firewatch')
+      vim.cmd.colorscheme('jellybeans-nvim')
+      -- vim.cmd.colorscheme('firewatch')
     end
   },
   "rktjmp/lush.nvim", -- pre-requisite for other themes
   "kyazdani42/blue-moon",
-  "bettervim/yugen.nvim",
-  'fionn/grb256',
-  -- 'dikiaap/minimalist',
-  -- 'Gavinok/SpaceWay.vim',
-  -- "slugbyte/lackluster.nvim",
+  'drewxs/ash.nvim',
+  -- 'fionn/grb256',
+  -- "bettervim/yugen.nvim",
+  -- 'atelierbram/base2tone-nvim',
   "tjdevries/colorbuddy.nvim", -- for gruvbuddy
+  {
+    dir = "~/.config/nvim/colorschemes/firewatch",
+  },
   {
     "rebelot/kanagawa.nvim",
     config = function()
@@ -23,34 +26,6 @@ return {
         commentStyle = { italic = false },
         keywordStyle = { italic = false },
       })
-    end,
-  },
-  {
-    'AlessandroYorba/Sierra',
-    config = function()
-      vim.g.sierra_Pitch = 1
-    end
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    opts = {
-      no_italic = true,
-    },
-    config = function(_, opts)
-      require('catppuccin').setup(opts)
-    end
-  },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    opts = {
-      styles = {
-        italic = false,
-      },
-    },
-    config = function(_, opts)
-      require("rose-pine").setup(opts)
     end,
   },
   {
