@@ -113,7 +113,7 @@ local theme = lush(function(injected_functions)
     -- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg        { }, -- |more-prompt|
     -- NonText        { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal({ fg = c_color_overlay1, bg = c_color_base }), -- Normal text
+    Normal({ fg = c_color_text, bg = c_color_base }), -- Normal text
     NormalFloat({ fg = c_color_cream, bg = c_color_surface1 }), -- Normal text in floating windows.
     FloatBorder({ fg = c_color_cream, bg = c_color_surface1 }), -- Border of floating windows.
     -- FloatTitle     { }, -- Title of floating windows.
@@ -140,7 +140,7 @@ local theme = lush(function(injected_functions)
     -- TabLineFill    { bg = c_duo_2 }, -- Tab pages line, where there are no labels
     -- TabLineSel     { }, -- Tab pages line, active tab page label
     -- Title          { }, -- Titles for output from ":set all", ":autocmd" etc.
-    Visual({ bg = c_color_surface0 }), -- Visual mode selection
+    Visual({ bg = c_color_surface1 }), -- Visual mode selection
     -- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
     -- WarningMsg     { }, -- Warning messages
     -- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -174,7 +174,7 @@ local theme = lush(function(injected_functions)
     Repeat({ fg = c_color_cream }), --   for, do, while, etc.
     Label({ fg = c_color_cream }), --   case, default, etc.
     Operator({ fg = c_color_cream }), --   "sizeof", "+", "*", etc.
-    Keyword({ Normal }), --   any other keyword
+    Keyword({ fg = c_color_overlay2, bg = c_color_base }), -- Normal text
     Exception({}), --   try, catch, throw
 
     -- PreProc        { }, -- (*) Generic Preprocessor
@@ -206,12 +206,12 @@ local theme = lush(function(injected_functions)
 
     -- See :h lsp-highlight, some groups may not be listed, submit a PR fix to lush-template!
     --
-    -- LspReferenceText            { } , -- Used for highlighting "text" references
+    -- LspReferenceText            {  fg = c_color_red } , -- Used for highlighting "text" references
     -- LspReferenceRead            { } , -- Used for highlighting "read" references
     -- LspReferenceWrite           { } , -- Used for highlighting "write" references
     -- LspCodeLens                 { } , -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
     -- LspCodeLensSeparator        { } , -- Used to color the seperator between two or more code lens.
-    -- LspSignatureActiveParameter { } , -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
+    -- LspSignatureActiveParameter { fg = c_color_red} , -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
 
     -- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
     --
@@ -262,7 +262,7 @@ local theme = lush(function(injected_functions)
     sym("@variable.builtin")({ fg = c_color_text }), -- built-in variable names (e.g. this, self)
     sym("@variable.parameter")({ fg = c_color_drift }), -- parameters of a function
     sym("@variable.parameter.builtin")({ fg = c_color_subtext0 }), -- special parameters (e.g. _, it)
-    sym("@variable.member")({ fg = c_color_text }), -- object and struct fields
+    sym("@variable.member")({ fg = c_color_tide }), -- object and struct fields
 
     sym("@constant")({ fg = c_color_crimson }), -- constant identifiers
     sym("@constant.builtin")({ fg = c_color_crimson }), -- built-in variable names (e.ge. this, self, unit)
