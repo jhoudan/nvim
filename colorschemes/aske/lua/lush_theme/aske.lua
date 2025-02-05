@@ -111,8 +111,8 @@ local theme = lush(function(injected_functions)
     -- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- MsgArea        { }, -- Area for messages and cmdline
     -- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
-    -- MoreMsg        { }, -- |more-prompt|
-    -- NonText        { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    MoreMsg({ fg = c_color_green }), -- |more-prompt|
+    NonText({ fg = c_color_blue }), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     Normal({ fg = c_color_text, bg = c_color_base }), -- Normal text
     NormalFloat({ fg = c_color_cream, bg = c_color_surface1 }), -- Normal text in floating windows.
     FloatBorder({ fg = c_color_cream, bg = c_color_surface1 }), -- Border of floating windows.
@@ -139,10 +139,10 @@ local theme = lush(function(injected_functions)
     -- TabLine        { bg = c_color_grey_5 }, -- Tab pages line, not active tab page label
     -- TabLineFill    { bg = c_duo_2 }, -- Tab pages line, where there are no labels
     -- TabLineSel     { }, -- Tab pages line, active tab page label
-    -- Title          { }, -- Titles for output from ":set all", ":autocmd" etc.
+    Title({ fg = c_color_crimson }), -- Titles for output from ":set all", ":autocmd" etc.
     Visual({ bg = c_color_surface1 }), -- Visual mode selection
     -- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
-    -- WarningMsg     { }, -- Warning messages
+    WarningMsg({ fg = c_color_rose }), -- Warning messages
     -- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
     -- Winseparator   { }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
     -- WildMenu       { }, -- Current match in 'wildmenu' completion
