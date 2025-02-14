@@ -81,7 +81,7 @@ local theme = lush(function(injected_functions)
     ColorColumn({}), -- Columns set with 'colorcolumn'
     -- Conceal        { bg = c_duo_3 }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor({ fg = c_color_subtext1 }), -- Character under the cursor
-    CurSearch({ fg = c_color_rust, bg = c_color_surface0 }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
+    CurSearch({ fg = c_color_yellow, bg = c_color_crust }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
     -- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
     CursorColumn({ bg = c_color_mantle }), -- Screen-column at the cursor, when 'cursorcolumn' is set.
@@ -285,9 +285,9 @@ local theme = lush(function(injected_functions)
     sym("@character")({ fg = c_color_sage }), -- character literals
     sym("@character.special")({ fg = c_color_sage }), -- special characters (e.g. wildcards)
 
-    sym("@boolean")({ fg = c_color_rose, gui = "bold" }), -- boolean literals
-    sym("@number")({ fg = c_color_seafoam }), -- number literals
-    sym("@float")({ fg = c_color_seafoam }), -- floating-point number literals
+    sym("@boolean")({ fg = c_color_seafoam }), -- boolean literals
+    sym("@number")({ fg = c_color_rose }), -- number literals
+    sym("@float")({ fg = c_color_rose }), -- floating-point number literals
 
     sym("@type")({ fg = c_color_subtext1, gui = "bold" }), -- type or class definitions and annotations
     sym("@type.builtin")({ fg = c_color_subtext1, gui = "bold" }), -- built-in types
