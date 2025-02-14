@@ -1,27 +1,30 @@
 return {
   {
-    'metalelf0/jellybeans-nvim',
+    dir = "~/.config/nvim/colorschemes/aske",
     lazy = false,
     priority = 1000,
     config = function()
       vim.cmd.colorscheme('kanagawa-dragon')
+      -- vim.cmd.colorscheme('citrus-mist')
       vim.cmd.colorscheme('aske')
-      -- vim.cmd.colorscheme('jellybeans-nvim')
     end
   },
   "rktjmp/lush.nvim", -- pre-requisite for other themes
+  'metalelf0/jellybeans-nvim',
   "kyazdani42/blue-moon",
   'drewxs/ash.nvim',
+  "antonio-hickey/citrus-mist",
+  "muchzill4/doubletrouble",
+  "bettervim/yugen.nvim",
   -- 'fionn/grb256',
-  -- "bettervim/yugen.nvim",
   -- 'atelierbram/base2tone-nvim',
   "tjdevries/colorbuddy.nvim", -- for gruvbuddy
   {
     dir = "~/.config/nvim/colorschemes/firewatch",
   },
-  {
-    dir = "~/.config/nvim/colorschemes/aske",
-  },
+  -- {
+  --   dir = "~/.config/nvim/colorschemes/aske",
+  -- },
   {
     "rebelot/kanagawa.nvim",
     config = function()

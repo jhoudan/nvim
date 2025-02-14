@@ -174,7 +174,8 @@ local theme = lush(function(injected_functions)
     Repeat({ fg = c_color_cream }), --   for, do, while, etc.
     Label({ fg = c_color_cream }), --   case, default, etc.
     Operator({ fg = c_color_cream }), --   "sizeof", "+", "*", etc.
-    Keyword({ fg = c_color_overlay2, bg = c_color_base }), -- Normal text
+    Keyword({ fg = c_color_crimson, bg = c_color_base }), -- Normal text
+    -- Keyword({ fg = c_color_cream, bg = c_color_base }), -- Normal text
     Exception({}), --   try, catch, throw
 
     -- PreProc        { }, -- (*) Generic Preprocessor
@@ -258,13 +259,13 @@ local theme = lush(function(injected_functions)
     --
     -- For more information see https://github.com/rktjmp/lush.nvim/issues/109
 
-    sym("@variable")({ fg = c_color_text }), -- various variable names
+    sym("@variable")({ fg = c_color_cream }), -- various variable names
     sym("@variable.builtin")({ fg = c_color_text }), -- built-in variable names (e.g. this, self)
     sym("@variable.parameter")({ fg = c_color_drift }), -- parameters of a function
     sym("@variable.parameter.builtin")({ fg = c_color_subtext0 }), -- special parameters (e.g. _, it)
     sym("@variable.member")({ fg = c_color_tide }), -- object and struct fields
 
-    sym("@constant")({ fg = c_color_crimson }), -- constant identifiers
+    sym("@constant")({ fg = c_color_crimson, gui = "bold" }), -- constant identifiers
     sym("@constant.builtin")({ fg = c_color_crimson }), -- built-in variable names (e.ge. this, self, unit)
     sym("@constant.macro")({ fg = c_color_crimson }), -- constants defined by the preprocessor
 
@@ -277,7 +278,7 @@ local theme = lush(function(injected_functions)
     sym("@string.regexp")({ fg = c_color_rust }), -- regular expressions
     sym("@string.escape")({ fg = c_color_seafoam }), -- escape sequences
     sym("@string.special")({ fg = c_color_sage, gui = "bold" }), -- other special strings (e.g. dates)
-    sym("@string.special.symbol")({ fg = c_uno_3 }), -- symbols or atoms
+    sym("@string.special.symbol")({ fg = c_color_tide }), -- symbols or atoms
     sym("@string.special.path")({ fg = c_color_sage }), -- filenames
     sym("@string.special.url")({ fg = c_color_sage, gui = "underline" }), -- URIs
 
@@ -285,8 +286,8 @@ local theme = lush(function(injected_functions)
     sym("@character.special")({ fg = c_color_sage }), -- special characters (e.g. wildcards)
 
     sym("@boolean")({ fg = c_color_rose, gui = "bold" }), -- boolean literals
-    sym("@number")({ fg = c_color_rust }), -- number literals
-    sym("@float")({ fg = c_color_rust }), -- floating-point number literals
+    sym("@number")({ fg = c_color_seafoam }), -- number literals
+    sym("@float")({ fg = c_color_seafoam }), -- floating-point number literals
 
     sym("@type")({ fg = c_color_subtext1, gui = "bold" }), -- type or class definitions and annotations
     sym("@type.builtin")({ fg = c_color_subtext1, gui = "bold" }), -- built-in types
@@ -298,8 +299,8 @@ local theme = lush(function(injected_functions)
 
     sym("@function")({ fg = c_color_cream, gui = "bold" }), -- function definitions
     sym("@function.builtin")({ fg = c_color_cream }), -- built-in functions
-    sym("@function.call")({ fg = c_color_crimson }), -- function calls
-    sym("@function.macro")({ fg = c_color_tide, gui = "italic" }), -- preprocessor macros
+    sym("@function.call")({ fg = c_uno_3 }), -- function calls
+    sym("@function.macro")({ fg = c_uno_3, gui = "italic" }), -- preprocessor macros
 
     sym("@function.method")({ fg = c_color_ember }), -- method definitions
     sym("@function.method.call")({ fg = c_color_ember }), -- method calls
