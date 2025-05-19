@@ -4,27 +4,27 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme('kanagawa-dragon')
-      -- vim.cmd.colorscheme('citrus-mist')
-      vim.cmd.colorscheme('aske')
-    end
+      vim.cmd.colorscheme("kanagawa-dragon")
+      -- vim.cmd.colorscheme("aske")
+      vim.cmd.colorscheme("jellybeans")
+    end,
   },
   "rktjmp/lush.nvim", -- pre-requisite for other themes
-  'metalelf0/jellybeans-nvim',
-  "kyazdani42/blue-moon",
-  'drewxs/ash.nvim',
-  "antonio-hickey/citrus-mist",
-  "muchzill4/doubletrouble",
-  "bettervim/yugen.nvim",
-  -- 'fionn/grb256',
+  "projekt0n/github-nvim-theme",
+  -- "kyazdani42/blue-moon",
+  -- "alexxgmz/e-ink.nvim",
   -- 'atelierbram/base2tone-nvim',
+  "muchzill4/doubletrouble",
   "tjdevries/colorbuddy.nvim", -- for gruvbuddy
   {
     dir = "~/.config/nvim/colorschemes/firewatch",
   },
-  -- {
-  --   dir = "~/.config/nvim/colorschemes/aske",
-  -- },
+  {
+    "wtfox/jellybeans.nvim",
+    opts = {
+      italics = false,
+    },
+  },
   {
     "rebelot/kanagawa.nvim",
     config = function()
@@ -34,28 +34,13 @@ return {
       })
     end,
   },
+  --
+  --
+  --
   {
-    "tiagovla/tokyodark.nvim",
-    opts = {
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-        identifiers = { italic = false },
-        functions = {},
-        variables = {},
-      },
-    },
-    config = function(_, opts)
-      require("tokyodark").setup(opts)
+    "brenoprata10/nvim-highlight-colors",
+    config = function()
+      require("nvim-highlight-colors").setup({})
     end,
   },
-  --
-  --
-  --
-  {
-    'brenoprata10/nvim-highlight-colors',
-    config = function()
-      require('nvim-highlight-colors').setup({})
-    end,
-  }
 }

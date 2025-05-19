@@ -57,10 +57,14 @@ local c_color_blue = hsl("#61afef")
 local c_color_purple = hsl("#c678dd")
 local c_color_teal = hsl("#56b6c2")
 local c_color_cream = hsl("#dcdfe4")
-local c_syntax_color_renamed = hsl("#33a0ff")
-local c_syntax_color_added = hsl("#43d08a")
-local c_syntax_color_modified = hsl("#e0c285")
-local c_syntax_color_removed = hsl("#e05252")
+-- local c_syntax_color_renamed = hsl("#33a0ff")
+-- local c_syntax_color_added = hsl("#43d08a")
+-- local c_syntax_color_modified = hsl("#e0c285")
+-- local c_syntax_color_removed = hsl("#e05252")
+local c_syntax_color_renamed = c_color_blue
+local c_syntax_color_added = c_color_green
+local c_syntax_color_modified = c_color_yellow
+local c_syntax_color_removed = c_color_red
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
