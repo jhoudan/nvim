@@ -5,16 +5,16 @@ return {
     priority = 1000,
     config = function()
       vim.cmd.colorscheme("kanagawa-dragon")
-      -- vim.cmd.colorscheme("aske")
-      vim.cmd.colorscheme("jellybeans")
+      vim.cmd.colorscheme("no-clown-fiesta")
+      -- vim.cmd.colorscheme("jellybeans")
     end,
   },
   "rktjmp/lush.nvim", -- pre-requisite for other themes
-  "projekt0n/github-nvim-theme",
+  "bettervim/yugen.nvim",
+  "aktersnurra/no-clown-fiesta.nvim",
+  "metalelf0/black-metal-theme-neovim",
   -- "kyazdani42/blue-moon",
-  -- "alexxgmz/e-ink.nvim",
   -- 'atelierbram/base2tone-nvim',
-  "muchzill4/doubletrouble",
   "tjdevries/colorbuddy.nvim", -- for gruvbuddy
   {
     dir = "~/.config/nvim/colorschemes/firewatch",
