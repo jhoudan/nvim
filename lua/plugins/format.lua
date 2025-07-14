@@ -25,6 +25,14 @@ return {
         typescriptreact =  { "prettierd", "prettier", stop_after_first = true },
       },
     },
+    init = function()
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*",
+        callback = function(args)
+          require("conform").format({ bufnr = args.buf })
+        end,
+      })
+    end
   },
 
   --
