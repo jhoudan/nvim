@@ -1,22 +1,48 @@
 local function override_black_background()
-  vim.api.nvim_set_hl(0, "Normal",    { bg = "#000000", fg = "#BCBCBC" })
-  vim.api.nvim_set_hl(0, "NonText",   { bg = "#000000" })
-  vim.api.nvim_set_hl(0, "SignColumn",{ bg = "#000000" })
-  vim.api.nvim_set_hl(0, "FoldColumn",{ bg = "#000000" })
+  vim.api.nvim_set_hl(0, "Normal", { bg = "#000000", fg = "#BCBCBC" })
+  vim.api.nvim_set_hl(0, "NonText", { bg = "#000000" })
+  vim.api.nvim_set_hl(0, "SignColumn", { bg = "#000000" })
+  vim.api.nvim_set_hl(0, "FoldColumn", { bg = "#000000" })
 end
 
 return {
   {
-    dir = "~/.config/nvim/colorschemes/aske",
+    "datsfilipe/vesper.nvim",
     lazy = false,
     priority = 1000,
+    init = function()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "vesper",
+        callback = override_black_background,
+      })
+    end,
     config = function()
-      vim.cmd.colorscheme("memoonry")
+      require("vesper").setup({
+        italics = {
+          comments = false,
+          keywords = false,
+          functions = false,
+          strings = false,
+          variables = false,
+        },
+      })
+
+      vim.cmd.colorscheme("vesper")
     end,
   },
+
   "rktjmp/lush.nvim", -- pre-requisite for other themes
   "tjdevries/colorbuddy.nvim", -- for gruvbuddy
   "aktersnurra/no-clown-fiesta.nvim",
+
+  {
+    dir = "~/.config/nvim/colorschemes/aske",
+    lazy = false,
+    priority = 1000,
+    -- config = function()
+    --   vim.cmd.colorscheme("memoonry")
+    -- end,
+  },
 
   {
     "nyngwang/memoonry.nvim",
@@ -25,7 +51,7 @@ return {
         pattern = "memoonry",
         callback = override_black_background,
       })
-    end
+    end,
   },
 
   {
@@ -44,7 +70,7 @@ return {
         pattern = "spaceway",
         callback = override_black_background,
       })
-    end
+    end,
   },
   --
   --
