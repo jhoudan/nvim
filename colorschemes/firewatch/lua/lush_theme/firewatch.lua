@@ -11,350 +11,162 @@
 --  "Y8P"  "Y888888P'"Y88P"`Y8P' "YY8P8P88P     `Y8
 --
 -- Enable lush.ify on this file, run:
---
---  `:Lushify`
---
---  or
---
---  `:lua require('lush').ify()`
+--  :Lushify
 
-local lush = require('lush')
+local lush = require("lush")
 local hsl = lush.hsl
 
-local c_uno_1 = hsl("#d6e9ff")
-local c_uno_2 = hsl("#abb2bf")
-local c_uno_3 = hsl("#6e88a6")
-local c_uno_4 = hsl("#55606d")
+local c_uno1 = hsl("#fec89a")
+local c_uno2 = hsl("#fbfbfb")
+local c_uno3 = hsl("#d6e9ff")
+local c_uno4 = hsl("#55606d")
 
-local c_duo_1 = hsl("#c8ae9d")
-local c_duo_2 = hsl("#e06c75")
-local c_duo_3 = hsl("#dd672c")
+local c_duo1 = hsl("#b4c4b4")
+local c_duo2 = hsl("#ee6055")
+local c_duo3 = hsl("#d06178")
 
-local c_accent_1 = hsl("#90C1F8")
+local c_renamed = hsl("#61afef")
+local c_added = hsl("#98c379")
+local c_modified = hsl("#e5c07b")
+local c_removed = hsl("#e05252")
 
-local c_color_red = hsl("#e06c75")
-local c_color_green = hsl("#98c379")
-local c_color_yellow = hsl("#e5c07b")
-local c_color_blue = hsl("#61afef")
-local c_color_purple = hsl("#c678dd")
-local c_color_teal = hsl("#56b6c2")
-local c_color_cream = hsl("#dcdfe4")
-local c_color_grey_1 = hsl("#5c6370")
-local c_color_grey_2 = hsl("#3e4452")
-local c_color_grey_3 = hsl("#2c323c")
-local c_color_grey_4 = hsl("#282c34")
-local c_color_grey_5 = hsl("#0D1117")
+local c_bg = hsl("#000814")
+local c_fg = c_uno2
+local c_accent = hsl("#a3bcf9")
+local c_gutter = hsl("#636d83")
+local c_selection = hsl("#3e4452")
+local c_fold_bg = hsl("#5c6370")
+local c_cursor_line = hsl("#2c323c")
 
-local c_syntax_color_renamed = hsl("#33a0ff")
-local c_syntax_color_added = hsl("#43d08a")
-local c_syntax_color_modified = hsl("#e0c285")
-local c_syntax_color_removed = hsl("#e05252")
-
--- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
--- support an annotation like the following. Consult your server documentation.
+-- LSP/Linters sometimes show `undefined global` in Lush specs
 ---@diagnostic disable: undefined-global
 local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
   return {
-    -- The following are the Neovim (as of 0.8.0-dev+100-g371dfb174) highlight
-    -- groups, mostly used for styling UI elements.
-    -- Comment them out and add your own properties to override the defaults.
-    -- An empty definition `{}` will clear all styling, leaving elements looking
-    -- like the 'Normal' group.
-    -- To be able to link to a group, it must already be defined, so you may have
-    -- to reorder items as you go.
-    --
-    -- See :h highlight-groups
-    --
-    ColorColumn    {}, -- Columns set with 'colorcolumn'
-    -- Conceal        { bg = c_duo_3 }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-    Cursor         { fg = c_color_grey_4 }, -- Character under the cursor
-    CurSearch      { fg = c_duo_2, bg = c_color_grey_4 }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
-    -- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
-    -- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
-    CursorColumn   { bg = c_color_grey_5 }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    CursorLine     { bg = c_color_grey_5 }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-    Directory      { fg = c_duo_3 }, -- Directory names (and other special names in listings)
-    DiffAdd        { fg = c_syntax_color_added }, -- Diff mode: Added line |diff.txt|
-    DiffChange     { fg = c_syntax_color_modified }, -- Diff mode: Changed line |diff.txt|
-    DiffDelete     { fg = c_syntax_color_removed }, -- Diff mode: Deleted line |diff.txt|
-    DiffText       { fg = c_syntax_color_renamed }, -- Diff mode: Changed text within a changed line |diff.txt|
-    EndOfBuffer    { fg = c_uno_4 }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
-    -- TermCursor     { }, -- Cursor in a focused terminal
-    -- TermCursorNC   { }, -- Cursor in an unfocused terminal
-    ErrorMsg       { fg = c_duo_2 }, -- Error messages on the command line
-    -- VertSplit      { }, -- Column separating vertically split windows
-    -- Folded         { bg = c_duo_2 }, -- Line used for closed folds
-    -- FoldColumn     { bg = c_duo_3 }, -- 'foldcolumn'
-    SignColumn     { bg = c_color_grey_5 }, -- Column where |signs| are displayed
-    -- IncSearch      { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-    -- Substitute     { }, -- |:substitute| replacement text highlighting
-    LineNr         { fg = c_uno_4 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    LineNrAbove    { fg = c_uno_4 }, -- Line number for when the 'relativenumber' option is set, above the cursor line
-    LineNrBelow    { fg = c_uno_4 }, -- Line number for when the 'relativenumber' option is set, below the cursor line
-    -- CursorLineNr   { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-    -- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
-    -- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
-    MatchParen     { fg = c_duo_3 }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    -- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
-    -- MsgArea        { }, -- Area for messages and cmdline
-    -- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
-    -- MoreMsg        { }, -- |more-prompt|
-    -- NonText        { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal         { fg = c_uno_1, bg = c_color_grey_5 }, -- Normal text
-    NormalFloat    { fg = c_uno_2, bg = c_color_grey_4 }, -- Normal text in floating windows.
-    FloatBorder    { fg = c_uno_2, bg = c_color_grey_4 }, -- Border of floating windows.
-    -- FloatTitle     { }, -- Title of floating windows.
-    -- NormalNC       { }, -- normal text in non-current windows
-    Pmenu          { bg = c_color_grey_3 }, -- Popup menu: Normal item.
-    -- PmenuSel       { }, -- Popup menu: Selected item.
-    -- PmenuKind      { }, -- Popup menu: Normal item "kind"
-    -- PmenuKindSel   { }, -- Popup menu: Selected item "kind"
-    -- PmenuExtra     { }, -- Popup menu: Normal item "extra text"
-    -- PmenuExtraSel  { }, -- Popup menu: Selected item "extra text"
-    -- PmenuSbar      { }, -- Popup menu: Scrollbar.
-    -- PmenuThumb     { }, -- Popup menu: Thumb of the scrollbar.
-    -- Question       { }, -- |hit-enter| prompt and yes/no questions
-    -- QuickFixLine   { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    Search         { fg = c_color_grey_4, bg = c_color_yellow }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-    -- SpecialKey     { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-    -- SpellBad       { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
-    -- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
-    -- SpellLocal     { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
-    -- SpellRare      { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-    StatusLine     { fg = c_uno_1, bg = c_color_grey_5 }, -- Status line of current window
-    -- StatusLineNC   { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    -- TabLine        { bg = c_color_grey_5 }, -- Tab pages line, not active tab page label
-    -- TabLineFill    { bg = c_duo_2 }, -- Tab pages line, where there are no labels
-    -- TabLineSel     { }, -- Tab pages line, active tab page label
-    -- Title          { }, -- Titles for output from ":set all", ":autocmd" etc.
-    Visual         { bg = c_color_grey_3 }, -- Visual mode selection
-    -- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
-    -- WarningMsg     { }, -- Warning messages
-    -- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
-    -- Winseparator   { }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
-    -- WildMenu       { }, -- Current match in 'wildmenu' completion
-    -- WinBar         { }, -- Window bar of current window
-    -- WinBarNC       { }, -- Window bar of not-current windows
+    -- Core editor UI
+    Normal({ fg = c_fg, bg = c_bg }),
+    NormalFloat({ fg = c_fg, bg = c_selection }),
+    Cursor({ fg = c_bg, bg = c_uno1 }),
+    CursorLine({ bg = c_cursor_line }),
+    CursorColumn({ bg = c_cursor_line }),
+    ColorColumn({ bg = c_cursor_line }),
+    SignColumn({ bg = c_bg, fg = c_gutter }),
+    LineNr({ fg = c_gutter, bg = c_bg }),
+    LineNrAbove({ fg = c_gutter, bg = c_bg }),
+    LineNrBelow({ fg = c_gutter, bg = c_bg }),
+    CursorLineNr({ fg = c_uno1, bg = c_cursor_line, gui = "bold" }),
+    EndOfBuffer({ fg = c_bg.da(10) }),
+    NonText({ fg = c_bg.da(10) }),
+    FoldColumn({ fg = c_fold_bg, bg = c_bg }),
+    Folded({ fg = c_uno3, bg = c_fold_bg }),
+    WinSeparator({ fg = c_bg.da(8), bg = c_bg }),
 
-    -- Common vim syntax groups used for all kinds of code and markup.
-    -- Commented-out groups should chain up to their preferred (*) group
-    -- by default.
-    --
-    -- See :h group-name
-    --
-    -- Uncomment and edit if you want more specific syntax highlighting.
+    StatusLine({ fg = c_fg, bg = c_selection }),
+    StatusLineNC({ fg = c_uno4, bg = c_bg }),
+    VertSplit({ fg = c_bg.da(8), bg = c_bg }),
 
-    Comment        { fg = c_color_grey_1 }, -- Any comment
+    Pmenu({ fg = c_fg, bg = c_selection }),
+    PmenuSel({ fg = c_bg, bg = c_uno3 }),
+    PmenuSbar({ bg = c_cursor_line }),
+    PmenuThumb({ bg = c_uno4 }),
 
-    Constant       { fg = c_duo_2 }, -- (*) Any constant
-    String         { fg = c_duo_1 }, --   A string constant: "this is a string"
-    Character      { fg = c_duo_1 }, --   A character constant: 'c', '\n'
-    Boolean        { fg = c_color_yellow, gui = "bold" }, --   A boolean constant: TRUE, false
-    Number         { fg = c_duo_2 }, --   A number constant: 234, 0xff
-    Float          { fg = c_duo_2 }, --   A floating point constant: 2.3e10
+    Search({ fg = c_bg, bg = c_uno3 }),
+    IncSearch({ fg = c_bg, bg = c_duo3 }),
+    CurSearch({ fg = c_bg, bg = c_uno3 }),
+    Visual({ bg = c_selection }),
+    MatchParen({ fg = c_accent, bg = c_bg, gui = "bold" }),
 
-    Identifier     { fg = c_uno_2 }, -- (*) Any variable name
-    Function       { fg = c_accent_1 }, --   Function name (also: methods for classes)
+    Directory({ fg = c_uno3 }),
+    Title({ fg = c_uno1 }),
+    Boolean({ fg = c_duo3, gui = "bold" }),
+    ErrorMsg({ fg = c_removed }),
+    WarningMsg({ fg = c_duo3 }),
+    Question({ fg = c_uno1 }),
 
-    Statement      { fg = c_uno_1 }, -- (*) Any statement
-    Conditional    { fg = c_uno_3 }, --   if, then, else, endif, switch, etc.
-    Repeat         { fg = c_uno_3 }, --   for, do, while, etc.
-    Label          { fg = c_uno_2 }, --   case, default, etc.
-    Operator       { fg = c_uno_3 }, --   "sizeof", "+", "*", etc.
-    Keyword        { Normal }, --   any other keyword
-    Exception      { }, --   try, catch, throw
+    -- Syntax mapping (screenshot look)
+    Comment({ fg = c_uno4, gui = "italic" }),
+    Constant({ fg = c_uno1, gui = "bold" }),
+    String({ fg = c_duo1 }),
+    Character({ fg = c_duo1 }),
+    Number({ fg = c_duo3 }),
+    Float({ fg = c_duo3 }),
 
-    -- PreProc        { }, -- (*) Generic Preprocessor
-    -- Include        { }, --   Preprocessor #include
-    -- Define         { }, --   Preprocessor #define
-    -- Macro          { }, --   Same as Define
-    -- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
+    Identifier({ fg = c_uno1 }),
+    Function({ fg = c_accent }),
 
-    Type           { fg = c_accent_1 }, -- (*) int, long, char, etc.
-    -- StorageClass   { }, --   static, register, volatile, etc.
-    Structure      { fg = c_duo_2 }, --   struct, union, enum, etc.
-    Typedef        { fg = c_duo_3 }, --   A typedef
+    Statement({ fg = c_fg }),
+    Operator({ fg = c_fg }),
+    Keyword({ fg = c_duo2 }),
+    Conditional({ fg = c_duo2 }),
+    Repeat({ fg = c_duo2 }),
+    Label({ fg = c_duo2 }),
+    Exception({ fg = c_duo2 }),
 
-    Special        { fg = c_uno_1 }, -- (*) Any special symbol
-    SpecialChar    { fg = c_duo_2}, --   Special character in a constant
-    Tag            { fg = c_uno_1 }, --   You can use CTRL-] on this
-    Delimiter      { fg = c_uno_1 }, --   Character that needs attention
-    -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
-    -- Debug          { }, --   Debugging statements
+    PreProc({ fg = c_uno1 }),
+    Include({ fg = c_uno1 }),
+    Define({ fg = c_uno1 }),
 
-    -- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
-    -- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-    Error          { }, -- Any erroneous construct
-    -- Todo           { }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    Type({ fg = c_uno3 }),
+    Structure({ fg = c_uno3 }),
+    Typedef({ fg = c_uno3 }),
 
-    -- These groups are for the native LSP client and diagnostic system. Some
-    -- other LSP clients may use these groups, or use their own. Consult your
-    -- LSP client's documentation.
+    Special({ fg = c_fg }),
+    SpecialChar({ fg = c_duo3 }),
+    Tag({ fg = c_duo2 }),
+    Delimiter({ fg = c_uno2 }),
 
-    -- See :h lsp-highlight, some groups may not be listed, submit a PR fix to lush-template!
-    --
-    -- LspReferenceText            { } , -- Used for highlighting "text" references
-    -- LspReferenceRead            { } , -- Used for highlighting "read" references
-    -- LspReferenceWrite           { } , -- Used for highlighting "write" references
-    -- LspCodeLens                 { } , -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
-    -- LspCodeLensSeparator        { } , -- Used to color the seperator between two or more code lens.
-    -- LspSignatureActiveParameter { } , -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
+    -- Diagnostics / LSP
+    DiagnosticError({ fg = c_removed }),
+    DiagnosticWarn({ fg = c_duo3 }),
+    DiagnosticInfo({ fg = c_renamed }),
+    DiagnosticHint({ fg = c_uno4 }),
+    DiagnosticUnderlineError({ sp = c_removed, gui = "underline" }),
+    DiagnosticUnderlineWarn({ sp = c_duo3, gui = "underline" }),
+    DiagnosticUnderlineInfo({ sp = c_renamed, gui = "underline" }),
+    DiagnosticUnderlineHint({ sp = c_uno4, gui = "underline" }),
 
-    -- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
-    --
-    DiagnosticError            { fg = c_syntax_color_removed } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticWarn             { fg = c_syntax_color_modified } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticInfo             { fg = c_syntax_color_added } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticHint             { fg = c_syntax_color_renamed } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    -- DiagnosticOk               { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    -- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
-    -- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
-    -- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.
-    -- DiagnosticVirtualTextHint  { } , -- Used for "Hint" diagnostic virtual text.
-    -- DiagnosticVirtualTextOk    { } , -- Used for "Ok" diagnostic virtual text.
-    DiagnosticUnderlineError   { sp = c_syntax_color_removed, gui = "underline" } , -- Used to underline "Error" diagnostics.
-    DiagnosticUnderlineWarn    { sp = c_syntax_color_modified, gui = "underline" } , -- Used to underline "Warn" diagnostics.
-    DiagnosticUnderlineInfo    { sp = c_syntax_color_added, gui = "underline" } , -- Used to underline "Info" diagnostics.
-    DiagnosticUnderlineHint    { sp = c_syntax_color_renamed, gui = "underline" } , -- Used to underline "Hint" diagnostics.
-    -- DiagnosticUnderlineOk      { } , -- Used to underline "Ok" diagnostics.
-    -- DiagnosticFloatingError    { } , -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
-    -- DiagnosticFloatingWarn     { } , -- Used to color "Warn" diagnostic messages in diagnostics float.
-    -- DiagnosticFloatingInfo     { } , -- Used to color "Info" diagnostic messages in diagnostics float.
-    -- DiagnosticFloatingHint     { } , -- Used to color "Hint" diagnostic messages in diagnostics float.
-    -- DiagnosticFloatingOk       { } , -- Used to color "Ok" diagnostic messages in diagnostics float.
-    -- DiagnosticSignError        { } , -- Used for "Error" signs in sign column.
-    -- DiagnosticSignWarn         { } , -- Used for "Warn" signs in sign column.
-    -- DiagnosticSignInfo         { } , -- Used for "Info" signs in sign column.
-    -- DiagnosticSignHint         { } , -- Used for "Hint" signs in sign column.
-    -- DiagnosticSignOk           { } , -- Used for "Ok" signs in sign column.
+    -- Diff
+    DiffAdd({ fg = c_added }),
+    DiffChange({ fg = c_modified }),
+    DiffDelete({ fg = c_removed }),
+    DiffText({ fg = c_renamed }),
 
-    -- Tree-Sitter syntax groups.
-    --
-    -- See :h treesitter-highlight-groups, some groups may not be listed,
-    -- submit a PR fix to lush-template!
-    --
-    -- Tree-Sitter groups are defined with an "@" symbol, which must be
-    -- specially handled to be valid lua code, we do this via the special
-    -- sym function. The following are all valid ways to call the sym function,
-    -- for more details see https://www.lua.org/pil/5.html
-    --
-    -- sym("@text.literal")
-    -- sym('@text.literal')
-    -- sym"@text.literal"
-    -- sym'@text.literal'
-    --
-    -- For more information see https://github.com/rktjmp/lush.nvim/issues/109
-
-    sym"@variable"                    { fg = c_uno_2 }, -- various variable names
-    sym"@variable.builtin"            { fg = c_duo_2 }, -- built-in variable names (e.g. this, self)
-    sym"@variable.parameter"          { fg = c_color_cream }, -- parameters of a function
-    sym"@variable.parameter.builtin"  { fg = c_uno_2 }, -- special parameters (e.g. _, it)
-    sym"@variable.member"             { fg = c_color_yellow }, -- object and struct fields
-
-    sym"@constant"                    { fg = c_syntax_color_removed }, -- constant identifiers
-    sym"@constant.builtin"            { fg = c_uno_3 }, -- built-in variable names (e.ge. this, self, unit)
-    sym"@constant.macro"              { fg = c_duo_3 }, -- constants defined by the preprocessor
-
-    sym"@module"                      { fg = c_duo_2 }, -- modules or namespaces
-    sym"@module.builtin"              { fg = c_duo_2 }, -- built-in modules or namespaces
-    sym"@label"                       { fg = c_uno_3 }, -- GOTO and other labels
-
-    sym"@string"                      { fg = c_duo_1 }, -- string literals
-    sym"@string.documentation"        { fg = c_duo_1, gui = "italic" }, -- string documenting code (.g. Python docstrings)
-    sym"@string.regexp"               { fg = c_syntax_color_removed}, -- regular expressions
-    sym"@string.escape"               { fg = c_duo_3 }, -- escape sequences
-    sym"@string.special"              { fg = c_duo_1, gui = "bold" }, -- other special strings (e.g. dates)
-    sym"@string.special.symbol"       { fg = c_color_yellow }, -- symbols or atoms
-    sym"@string.special.path"         { fg = c_duo_1 }, -- filenames
-    sym"@string.special.url"          { fg = c_duo_1, gui = "underline" }, -- URIs
-
-    sym"@character"                   { fg = c_duo_1 }, -- character literals
-    sym"@character.special"           { fg = c_duo_3 }, -- special characters (e.g. wildcards)
-
-    sym"@boolean"                     { Boolean }, -- boolean literals
-    sym"@number"                      { fg = c_color_purple }, -- number literals
-    sym"@float"                       { fg = c_color_purple }, -- floating-point number literals
-
-    sym"@type"                        { fg = c_color_blue, gui = "bold" }, -- type or class definitions and annotations
-    sym"@type.builtin"                { fg = c_color_blue, gui = "bold" }, -- built-in types
-    sym"@type.definition"             { fg = c_uno_1 }, -- identifiers in type definitions (e.g. typedef <type> <identifier> in C)
-
-    sym"@attribute"                   { fg = c_color_yellow }, -- attribute annotations (e.g. Python decorators, Rust lifetimes)
-    sym"@attribute.builtin"           { fg = c_duo_2 }, -- builtin annotations (e.ge @property in Python)
-    sym"@property"                    { fg = c_uno_2 }, -- the key in key/value pairs
-
-    sym"@function"                    { fg = c_uno_3, gui = "bold" }, -- function definitions
-    sym"@function.builtin"            { fg = c_duo_2 }, -- built-in functions
-    sym"@function.call"               { fg = c_accent_1 }, -- function calls
-    sym"@function.macro"              { fg = c_color_green, gui = "italic" }, -- preprocessor macros
-
-    sym"@function.method"             { fg = c_color_yellow }, -- method definitions
-    sym"@function.method.call"        { fg = c_color_yellow }, -- method calls
-
-    sym"@constructor"                 { fg = c_color_green, gui = "bold" }, -- constructor calls and definitions
-    sym"@operator"                    { fg = c_color_cream }, -- symbol operators (e.ge +, *)
-
-    sym"@keyword"                     { Keyword }, -- keywords not fitting into specific categories
-    sym"@keyword.coroutine"           { Keyword }, -- keywords related to coroutines
-    sym"@keyword.function"            { Keyword }, -- keywords that define a function
-    sym"@keyword.operator"            { Keyword }, -- operators that are English words
-    sym"@keyword.import"              { Keyword }, -- keywords for including modules
-    sym"@keyword.type"                { Keyword }, -- keywords defining composite types
-    sym"@keyword.modifier"            { Keyword }, -- keywords defining type modifiers (e.g. const, static, public)
-    sym"@keyword.repeat"              { Keyword }, -- keywords related to loops
-    sym"@keyword.return"              { Keyword, gui = "bold" }, -- keywords like return and yield
-    sym"@keyword.debug"               { Keyword }, -- keywords related to debugging
-    sym"@keyword.exception"           { Keyword }, -- keywords related to exceptions
-
-    sym"@keyword.conditional"         { Keyword }, -- keywords related to conditionals
-    sym"@keyword.conditional.ternary" { Keyword }, -- ternaary operators
-
-    sym"@keyword.directive"           { Keyword }, --
-    sym"@keyword.directive.define"    { Keyword }, --
-
-    sym"@punctuation"                 { fg = c_color_cream }, -- delimiters (e.g. ;, ., ,)
-    sym"@punctuation.bracket"         { fg = c_color_cream }, -- brackets and parentheses
-    sym"@punctuation.special"         { fg = c_color_cream }, -- special symbols
-
-    sym"@comment"                     { Comment }, -- Comment
-    sym"@comment.documentation"       { Comment }, -- Comment
-
-    sym"@diff.plus"                   { fg = c_syntax_color_added }, -- Delimiter
-    sym"@diff.minus"                  { fg = c_syntax_color_modified }, -- Delimiter
-    sym"@diff.delta"                  { fg = c_syntax_color_renamed }, -- Delimiter
-
-    sym"@text.literal"                { fg = c_duo_1 }, -- Comment
-    -- sym"@text.reference"       { }, -- Identifier
-    sym"@text.title"                  { fg = c_color_blue, gui = "bold" }, -- Title
-    -- sym"@text.uri"             { }, -- Underlined
-    -- sym"@text.underline"       { }, -- Underlined
-    -- sym"@text.todo"            { }, -- Todo
-    -- sym"@define"               { fg = c_duo_3 }, -- Define
-    -- sym"@macro"                { }, -- Macro
-    -- sym"@parameter"            { }, -- Identifier
-    -- sym"@method"               { }, -- Function
-    -- sym"@field"                { }, -- Identifier
-    -- sym"@conditional"          { }, -- Conditional
-    -- sym"@repeat"               { }, -- Repeat
-
-
-    sym"@exception"               { fg = c_duo_3 }, -- Exception
-    -- sym"@storageclass"         { }, -- StorageClass
-    -- sym"@structure"            { }, -- Structure
-    -- sym"@namespace"            { }, -- Identifier
-    -- sym"@include"              { }, -- Include
-    -- sym"@preproc"              { }, -- PreProc
-    -- sym"@debug"                { }, -- Debug
-
-    sym"@tag"                     { fg = c_color_blue }, -- Tag
-    sym"@tag.builtin"             { fg = c_color_blue }, -- Tag
-    sym"@tag.attribute"           { fg = c_color_cream }, -- Tag
-    sym"@tag.delimiter"           { fg = c_uno_1 }, -- Tag
-}
+    -- Treesitter selections
+    sym("@comment")({ Comment }),
+    sym("@string")({ String }),
+    sym("@string.escape")({ fg = c_duo3 }),
+    sym("@character")({ Character }),
+    sym("@number")({ Number }),
+    sym("@boolean")({ Number }),
+    sym("@float")({ Float }),
+    sym("@constant")({ Constant }),
+    sym("@constant.builtin")({ Constant }),
+    sym("@variable")({ fg = c_fg }),
+    sym("@variable.builtin")({ fg = c_fg }),
+    sym("@function")({ Function }),
+    sym("@function.builtin")({ Function }),
+    sym("@method")({ Function }),
+    sym("@constructor")({ Function }),
+    sym("@type")({ Type }),
+    sym("@type.builtin")({ Type }),
+    sym("@property")({ fg = c_fg }),
+    sym("@parameter")({ fg = c_fg }),
+    sym("@field")({ fg = c_fg }),
+    sym("@attribute")({ fg = c_duo2 }),
+    sym("@operator")({ Operator }),
+    sym("@keyword")({ Keyword }),
+    sym("@keyword.function")({ Keyword }),
+    sym("@keyword.return")({ Keyword }),
+    sym("@keyword.operator")({ Keyword }),
+    sym("@punctuation")({ fg = c_uno2 }),
+    sym("@punctuation.bracket")({ fg = c_accent }),
+    sym("@punctuation.delimiter")({ fg = c_uno2 }),
+    sym("@tag")({ fg = c_duo2 }),
+    sym("@tag.attribute")({ fg = c_duo1 }),
+    sym("@tag.delimiter")({ fg = c_uno3 }),
+  }
 end)
 
--- Return our parsed theme for extension or use elsewhere.
 return theme
 
 -- vi:nowrap

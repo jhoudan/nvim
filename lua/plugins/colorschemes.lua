@@ -8,9 +8,15 @@ end
 
 return {
   {
-    "EdenEast/nightfox.nvim",
+    dir = "~/.config/nvim/colorschemes/firewatch",
     lazy = false,
     priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("firewatch")
+    end,
+  },
+  {
+    "EdenEast/nightfox.nvim",
     init = function()
       vim.api.nvim_create_autocmd("ColorScheme", {
         pattern = "terafox",
@@ -21,9 +27,6 @@ return {
         pattern = "duskfox",
         callback = force_black_background,
       })
-    end,
-    config = function()
-      vim.cmd.colorscheme("terafox")
     end,
   },
 
@@ -59,12 +62,6 @@ return {
         callback = force_black_background,
       })
     end,
-  },
-  {
-    dir = "~/.config/nvim/colorschemes/firewatch",
-  },
-  {
-    dir = "~/.config/nvim/colorschemes/aske",
   },
   {
     dir = "~/.config/nvim/colorschemes/captain",
