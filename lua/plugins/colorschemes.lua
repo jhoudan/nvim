@@ -67,6 +67,9 @@ return {
     dir = "~/.config/nvim/colorschemes/aske",
   },
   {
+    dir = "~/.config/nvim/colorschemes/captain",
+  },
+  {
     "wtfox/jellybeans.nvim",
     opts = {
       italics = false,
