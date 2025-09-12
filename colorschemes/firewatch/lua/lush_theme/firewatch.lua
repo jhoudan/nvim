@@ -16,12 +16,12 @@
 local lush = require("lush")
 local hsl = lush.hsl
 
-local c_uno1 = hsl("#fec89a")
+local c_uno1 = hsl("#ffb5a7")
 local c_uno2 = hsl("#fbfbfb")
 local c_uno3 = hsl("#d6e9ff")
 local c_uno4 = hsl("#55606d")
 
-local c_duo1 = hsl("#b4c4b4")
+local c_duo1 = hsl("#ffd7ba")
 local c_duo2 = hsl("#ee6055")
 local c_duo3 = hsl("#d06178")
 
@@ -85,7 +85,7 @@ local theme = lush(function(injected_functions)
 
     -- Syntax mapping (screenshot look)
     Comment({ fg = c_uno4, gui = "italic" }),
-    Constant({ fg = c_uno1, gui = "bold" }),
+    Constant({ fg = c_uno1 }),
     String({ fg = c_duo1 }),
     Character({ fg = c_duo1 }),
     Number({ fg = c_duo3 }),
