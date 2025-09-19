@@ -20,9 +20,10 @@ return {
         lua = { "stylua" },
         elixir = { "mix" },
         ocaml = { "ocamlformat" },
-        javascript =  { "prettierd", "prettier", stop_after_first = true },
-        typescript =  { "prettierd", "prettier", stop_after_first = true },
-        typescriptreact =  { "prettierd", "prettier", stop_after_first = true },
+        rust = { "rustfmt" },
+        javascript = { "prettierd", "prettier", stop_after_first = true },
+        typescript = { "prettierd", "prettier", stop_after_first = true },
+        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
       },
     },
     init = function()
@@ -32,7 +33,7 @@ return {
           require("conform").format({ bufnr = args.buf })
         end,
       })
-    end
+    end,
   },
 
   --

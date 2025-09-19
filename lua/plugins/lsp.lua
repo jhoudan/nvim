@@ -25,6 +25,7 @@ return {
         ts_ls = {},
         cssls = {},
         -- ocamllsp = {},
+        rust_analyzer = {},
         solargraph = {},
         elixirls = {
           cmd = { vim.fn.stdpath("data") .. "/mason/bin/elixir-ls" },
