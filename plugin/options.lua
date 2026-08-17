@@ -40,3 +40,5 @@ vim.opt.backup = false
 vim.opt.swapfile = false
 
 vim.opt.wrap = false
+
+vim.opt.conceallevel = 1

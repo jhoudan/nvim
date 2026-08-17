@@ -1,0 +1,3 @@
+WRN 2026-04-22T20:45:12.436 ?.22876    server_start:199: Failed to start server: operation not permitted: /var/folders/p3/5wd1b3nx2pq175w5pm0b53cr0000gn/T/nvim.jhoudan/I5uTqE/nvim.22876.0
+WRN 2026-04-22T20:45:21.792 ?.23278    server_start:199: Failed to start server: operation not permitted: /var/folders/p3/5wd1b3nx2pq175w5pm0b53cr0000gn/T/nvim.jhoudan/1k5WWD/nvim.23278.0
+WRN 2026-04-22T20:45:24.398 ?.23326    server_start:199: Failed to start server: operation not permitted: /var/folders/p3/5wd1b3nx2pq175w5pm0b53cr0000gn/T/nvim.jhoudan/Uj5OVb/nvim.23326.0

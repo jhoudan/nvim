@@ -16,7 +16,19 @@ return {
         capabilities = require("cmp_nvim_lsp").default_capabilities()
       end
 
-      local lspconfig = require("lspconfig")
+      local function start_ocamllsp(dispatchers, config)
+        local cmd = { "opam", "exec" }
+        if config.root_dir and vim.uv.fs_stat(vim.fs.joinpath(config.root_dir, "_opam")) then
+          vim.list_extend(cmd, { "--switch", config.root_dir })
+        end
+        vim.list_extend(cmd, { "--", "ocamllsp" })
+
+        return vim.lsp.rpc.start(cmd, dispatchers, {
+          cwd = config.cmd_cwd,
+          env = config.cmd_env,
+          detached = config.detached,
+        })
+      end
 
       -- check :help lspconfig-server-configuration for more details
       local servers = {
@@ -24,12 +36,17 @@ return {
         bashls = {},
         ts_ls = {},
         cssls = {},
-        -- ocamllsp = {},
+        tailwindcss = {},
+        ocamllsp = {
+          manual_install = true,
+          cmd = start_ocamllsp,
+        },
         rust_analyzer = {},
-        solargraph = {},
+        -- solargraph = {},
         elixirls = {
           cmd = { vim.fn.stdpath("data") .. "/mason/bin/elixir-ls" },
         },
+        zls = {},
       }
 
       local servers_to_install = vim.tbl_filter(function(key)
@@ -50,13 +67,17 @@ return {
       vim.list_extend(ensure_installed, servers_to_install)
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-      for name, config in pairs(servers) do
-        config = vim.tbl_deep_extend("force", {}, {
+      for name, server_config in pairs(servers) do
+        local config = vim.tbl_deep_extend("force", {}, {
           capabilities = capabilities,
-        }, config)
+        }, server_config)
 
-        lspconfig[name].setup(config)
+        -- Used only by the Mason installation filter above, not by the LSP client.
+        config.manual_install = nil
+        vim.lsp.config(name, config)
       end
+
+      vim.lsp.enable(vim.tbl_keys(servers))
 
       -- Disable semantic tokens by default to avoid syntax highlighting issues w/ treesitter
       local enable_semantic_tokens = {}
